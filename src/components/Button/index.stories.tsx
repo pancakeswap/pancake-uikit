@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+/* eslint-disable import/no-unresolved */
 import { Meta } from "@storybook/react/types-6-0";
 import Button from "./index";
 
@@ -17,7 +18,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-export const Default = () => {
+export const Default: React.FC = () => {
   return (
     <>
       <Row>
