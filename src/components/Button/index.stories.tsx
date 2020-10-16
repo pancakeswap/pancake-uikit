@@ -1,9 +1,15 @@
 import React from "react";
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-// eslint-disable-next-line import/no-unresolved
-import { Story, Meta } from "@storybook/react/types-6-0";
+import styled from "styled-components";
+import { Meta } from "@storybook/react/types-6-0";
+import Button from "./index";
 
-import Button, { Props } from "./index";
+const Row = styled.div`
+  margin-bottom: 32px;
+
+  & > button + button {
+    margin-left: 16px;
+  }
+`;
 
 export default {
   title: "Button",
@@ -11,11 +17,32 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<Props> = (args) => <Button {...args} />;
-
-export const Primary = Template.bind({});
-
-Primary.args = {
-  variant: "primary",
-  children: "Primary",
+export const Default = () => {
+  return (
+    <>
+      <Row>
+        <Button>Primary</Button>
+        <Button disabled>Disabled</Button>
+        <Button size="sm">Small</Button>
+      </Row>
+      <Row>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="secondary" disabled>
+          Disabled
+        </Button>
+        <Button variant="secondary" size="sm">
+          Small
+        </Button>
+      </Row>
+      <Row>
+        <Button variant="outline">Outline</Button>
+        <Button variant="outline" disabled>
+          Disabled
+        </Button>
+        <Button variant="outline" size="sm">
+          Small
+        </Button>
+      </Row>
+    </>
+  );
 };
