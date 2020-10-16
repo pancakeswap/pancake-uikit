@@ -12,6 +12,7 @@ const getBackground = ({ variant, disabled, theme }: ThemedProps) => {
 
   switch (variant) {
     case "outline":
+    case "text":
       return "transparent";
     case "secondary":
       return theme.colors.tertiary;
@@ -31,6 +32,7 @@ const getBorder = ({ variant, disabled, theme }: ThemedProps) => {
       return `2px solid ${theme.colors.primary}`;
     case "primary":
     case "secondary":
+    case "text":
     default:
       return 0;
   }
@@ -44,6 +46,8 @@ const getColor = ({ variant, disabled, theme }: ThemedProps) => {
   switch (variant) {
     case "primary":
       return "#FFFFFF";
+    case "text":
+      return theme.colors.text;
     case "outline":
     case "secondary":
     default:
