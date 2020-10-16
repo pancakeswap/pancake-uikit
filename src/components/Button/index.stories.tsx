@@ -47,3 +47,27 @@ export const Default: React.FC = () => {
     </>
   );
 };
+
+const StartIcon = () => (
+  <span role="img" aria-label="cake" style={{ display: "inline-block", width: "100%", textAlign: "center" }}>
+    🥞
+  </span>
+);
+const EndIcon = () => (
+  <span role="img" aria-label="cake" style={{ display: "inline-block", width: "100%", textAlign: "center" }}>
+    🍳
+  </span>
+);
+export const WithIcon: React.FC = () => {
+  return (
+    <>
+      <Row>
+        <Button startIcon={<StartIcon />}>Start Icon</Button>
+        <Button endIcon={<EndIcon />}>End Icon</Button>
+        <Button startIcon={<StartIcon />} endIcon={<EndIcon />}>
+          Start & End Icon
+        </Button>
+      </Row>
+    </>
+  );
+};

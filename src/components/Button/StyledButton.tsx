@@ -51,6 +51,14 @@ const getColor = ({ variant, disabled, theme }: ThemedProps) => {
   }
 };
 
+export const StartIcon = styled.span`
+  margin-right: 0.5em;
+`;
+
+export const EndIcon = styled.span`
+  margin-left: 0.5em;
+`;
+
 const StyledButton = styled.button<Props>`
   align-items: center;
   background-color: ${getBackground};
