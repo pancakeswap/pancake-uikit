@@ -1,6 +1,6 @@
-import { Pallete } from "../styled.d";
+import { Palette } from "../styled.d";
 
-const pallete: Pallete = {
+const palette: Palette = {
   iris: "#1FC7D4",
   peach: "#7645D9",
   onyx: "#191326",
@@ -13,4 +13,4 @@ const pallete: Pallete = {
   white: "#FFFFFF",
 };
 
-export default pallete;
+export default palette;

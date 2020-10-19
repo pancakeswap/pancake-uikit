@@ -10,7 +10,7 @@ export type MediaQueries = {
   xl: string;
 };
 
-export type Pallete = {
+export type Palette = {
   iris: string;
   peach: string;
   onyx: string;
@@ -37,7 +37,7 @@ declare module "styled-components" {
       success: string;
       accent: string;
       light: string;
-    } & Pallete;
+    } & palette;
     scales: {
       breakpoints: Breakpoints;
       mediaQueries: MediaQueries;

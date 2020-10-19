@@ -1,21 +1,21 @@
 import { DefaultTheme } from "styled-components";
 import mediaQueries, { breakpoints } from "./mediaQueries";
-import pallete from "./pallete";
+import palette from "./palette";
 
 const darkTheme: DefaultTheme = {
   colors: {
-    ...pallete,
-    primary: pallete.iris,
-    secondary: pallete.peach,
+    ...palette,
+    primary: palette.iris,
+    secondary: palette.peach,
     tertiary: "#EFF4F5",
-    background: pallete.onyx,
-    dark: pallete.onyx,
-    failure: pallete.fuschia,
-    success: pallete.evergreen,
-    text: pallete.white,
-    textSubtle: pallete.lightSlate,
-    accent: pallete.dorian,
-    light: pallete.cloud,
+    background: palette.onyx,
+    dark: palette.onyx,
+    failure: palette.fuschia,
+    success: palette.evergreen,
+    text: palette.white,
+    textSubtle: palette.lightSlate,
+    accent: palette.dorian,
+    light: palette.cloud,
   },
   scales: {
     breakpoints,
