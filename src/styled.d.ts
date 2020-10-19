@@ -1,5 +1,15 @@
 import "styled-components";
 
+export type Breakpoints = string[];
+
+export type MediaQueries = {
+  xs: string;
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+};
+
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
@@ -17,6 +27,10 @@ declare module "styled-components" {
         background: string;
         borderColor: string;
       };
+    };
+    scales: {
+      breakpoints: Breakpoints;
+      mediaQueries: MediaQueries;
     };
     shadows: {
       level1: string;

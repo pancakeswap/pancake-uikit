@@ -1,4 +1,5 @@
 import { DefaultTheme } from "styled-components";
+import mediaQueries, { breakpoints } from "./mediaQueries";
 
 const lightTheme: DefaultTheme = {
   colors: {
@@ -16,6 +17,10 @@ const lightTheme: DefaultTheme = {
       background: "#FFFFFF",
       borderColor: "rgba(14, 14, 44, 0.05)",
     },
+  },
+  scales: {
+    breakpoints,
+    mediaQueries,
   },
   shadows: {
     level1: "0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05)",
