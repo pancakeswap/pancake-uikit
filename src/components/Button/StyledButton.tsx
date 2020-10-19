@@ -1,5 +1,5 @@
 import styled, { DefaultTheme } from "styled-components";
-import { Props } from "./types.d";
+import { Props, Variants } from "./types.d";
 
 interface ThemedProps extends Props {
   theme: DefaultTheme;
@@ -11,12 +11,12 @@ const getBackground = ({ variant, disabled, theme }: ThemedProps) => {
   }
 
   switch (variant) {
-    case "outline":
-    case "text":
+    case Variants.OUTLINE:
+    case Variants.TEXT:
       return "transparent";
-    case "secondary":
+    case Variants.SECONDARY:
       return theme.colors.tertiary;
-    case "primary":
+    case Variants.PRIMARY:
     default:
       return theme.colors.primary;
   }
@@ -28,11 +28,11 @@ const getBorder = ({ variant, disabled, theme }: ThemedProps) => {
   }
 
   switch (variant) {
-    case "outline":
+    case Variants.OUTLINE:
       return `2px solid ${theme.colors.primary}`;
-    case "primary":
-    case "secondary":
-    case "text":
+    case Variants.PRIMARY:
+    case Variants.SECONDARY:
+    case Variants.TEXT:
     default:
       return 0;
   }
@@ -44,12 +44,12 @@ const getColor = ({ variant, disabled, theme }: ThemedProps) => {
   }
 
   switch (variant) {
-    case "primary":
+    case Variants.PRIMARY:
       return "#FFFFFF";
-    case "text":
+    case Variants.TEXT:
       return theme.colors.text;
-    case "outline":
-    case "secondary":
+    case Variants.OUTLINE:
+    case Variants.SECONDARY:
     default:
       return theme.colors.primary;
   }
