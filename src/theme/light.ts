@@ -1,20 +1,18 @@
 import { DefaultTheme } from "styled-components";
-import pallete from "./pallete";
 
 const lightTheme: DefaultTheme = {
   colors: {
-    ...pallete,
-    primary: pallete.iris,
-    secondary: pallete.peach,
+    primary: "#1FC7D4",
+    secondary: "#7645D9",
     tertiary: "#EFF4F5",
-    background: pallete.white,
-    dark: pallete.onyx,
-    failure: pallete.fuschia,
-    success: pallete.evergreen,
-    text: pallete.onyx,
-    textSubtle: pallete.lightSlate,
-    accent: pallete.dorian,
-    light: pallete.cloud,
+    success: "#31D0AA",
+    failure: "#ED4B9E",
+    contrast: "#191326",
+    input: "#F4F2F7",
+    background: "#FAF9FA",
+    card: "#FFFFFF",
+    text: "#452A7A",
+    textSubtle: "#AEA0D6",
   },
 };
 
