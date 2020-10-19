@@ -1,5 +1,15 @@
 import "styled-components";
 
+export type Breakpoints = string[];
+
+export type MediaQueries = {
+  xs: string;
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+};
+
 export type Pallete = {
   iris: string;
   peach: string;
@@ -28,5 +38,9 @@ declare module "styled-components" {
       accent: string;
       light: string;
     } & Pallete;
+    scales: {
+      breakpoints: Breakpoints;
+      mediaQueries: MediaQueries;
+    };
   }
 }

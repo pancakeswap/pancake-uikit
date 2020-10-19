@@ -1,4 +1,5 @@
 import { DefaultTheme } from "styled-components";
+import mediaQueries, { breakpoints } from "./mediaQueries";
 import pallete from "./pallete";
 
 const lightTheme: DefaultTheme = {
@@ -15,6 +16,10 @@ const lightTheme: DefaultTheme = {
     textSubtle: pallete.lightSlate,
     accent: pallete.dorian,
     light: pallete.cloud,
+  },
+  scales: {
+    breakpoints,
+    mediaQueries,
   },
 };
 
