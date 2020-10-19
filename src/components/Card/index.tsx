@@ -1,6 +1,16 @@
-import React, { HTMLAttributes } from "react";
-import StyledCard from "./StyledCard";
+import styled, { DefaultTheme } from "styled-components";
 
-const Card: React.FC<HTMLAttributes<HTMLDivElement>> = (props) => <StyledCard {...props} />;
+interface CardProps {
+  theme: DefaultTheme;
+}
+
+const Card = styled.div<CardProps>`
+  background-color: ${({ theme }) => theme.colors.card.background};
+  border: 1px solid ${({ theme }) => theme.colors.card.borderColor};
+  border-radius: 32px;
+  box-shadow: ${({ theme }) => theme.shadows.level1};
+  color: ${({ theme }) => theme.colors.text};
+  padding: 24px;
+`;
 
 export default Card;
