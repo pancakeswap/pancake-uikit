@@ -1,55 +1,9 @@
 import styled, { DefaultTheme } from "styled-components";
-import { ButtonProps, variants } from "./types";
+import { ButtonProps, ButtonThemeVariant, variants } from "./types";
 
 interface ThemedProps extends ButtonProps {
   theme: DefaultTheme;
 }
-
-const { PRIMARY, SECONDARY, TERTIARY, TEXT } = variants;
-
-const getVariantStyles = ({ variant, theme }: ThemedProps) => {
-  switch (variant) {
-    case TEXT:
-      return {
-        backgroundColor: "transparent",
-        color: theme.colors.primary,
-        ":hover:not(:disabled):not(:active)": {
-          backgroundColor: theme.colors.tertiary,
-        },
-      };
-    case TERTIARY:
-      return {
-        backgroundColor: theme.colors.tertiary,
-        color: theme.colors.primary,
-      };
-    case SECONDARY:
-      return {
-        backgroundColor: "transparent",
-        border: `2px solid ${theme.colors.primary}`,
-        color: theme.colors.primary,
-        ":hover:not(:disabled):not(:active)": {
-          borderColor: theme.colors.primaryBright,
-        },
-        ":active:not(:disabled)": {
-          borderColor: theme.colors.primaryDark,
-        },
-      };
-    case PRIMARY:
-    default:
-      return {
-        backgroundColor: theme.colors.primary,
-        boxShadow: "inset 0px -1px 0px rgba(14, 14, 44, 0.4)",
-        color: "#FFFFFF",
-        ":hover:not(:disabled):not(:active)": {
-          backgroundColor: theme.colors.primaryBright,
-        },
-        ":active:not(:disabled)": {
-          backgroundColor: theme.colors.primaryDark,
-          boxShadow: "inset 0px 2px 2px -4px rgba(74, 74, 104, 0.6)",
-        },
-      };
-  }
-};
 
 export const StartIcon = styled.span`
   margin-right: 0.5em;
@@ -59,10 +13,20 @@ export const EndIcon = styled.span`
   margin-left: 0.5em;
 `;
 
+const getButtonVariantProp = (prop: keyof ButtonThemeVariant) => ({
+  theme,
+  variant = variants.PRIMARY,
+}: ThemedProps) => {
+  return theme.button[variant][prop];
+};
+
 const StyledButton = styled.button<ButtonProps>`
   align-items: center;
-  border: 0;
+  background-color: ${getButtonVariantProp("background")};
+  border: ${getButtonVariantProp("border")};
   border-radius: 16px;
+  box-shadow: ${getButtonVariantProp("boxShadow")};
+  color: ${getButtonVariantProp("color")};
   cursor: pointer;
   display: inline-flex;
   font-family: inherit;
@@ -74,10 +38,18 @@ const StyledButton = styled.button<ButtonProps>`
   outline: 0;
   padding: ${({ size }) => (size === "sm" ? "0 16px" : "0 24px")};
 
-  ${getVariantStyles}
+  &:hover:not(:disabled):not(:active) {
+    background-color: ${getButtonVariantProp("backgroundHover")};
+    border-color: ${getButtonVariantProp("borderColorHover")};
+  }
 
-  &:focus {
+  &:focus:not(:active) {
     box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.secondary};
+  }
+
+  &:active {
+    background-color: ${getButtonVariantProp("backgroundActive")};
+    box-shadow: ${getButtonVariantProp("boxShadowActive")};
   }
 
   &:disabled {

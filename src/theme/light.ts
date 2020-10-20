@@ -1,13 +1,13 @@
 import { DefaultTheme } from "styled-components";
 import mediaQueries, { breakpoints } from "./mediaQueries";
+import { light as lightButton } from "../components/Button/theme";
 import { light as lightCard } from "../components/Card/theme";
-import colors from "./colors";
+import { lightColors } from "./colors";
 
 const lightTheme: DefaultTheme = {
   isDark: false,
-  colors: {
-    ...colors,
-  },
+  colors: lightColors,
+  button: lightButton,
   card: lightCard,
   scales: {
     breakpoints,
