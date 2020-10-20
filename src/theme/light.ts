@@ -19,10 +19,6 @@ const lightTheme: DefaultTheme = {
     text: "#452A7A",
     textDisabled: "#BDC2C4",
     textSubtle: "#AEA0D6",
-    card: {
-      background: "#FFFFFF",
-      borderColor: "rgba(14, 14, 44, 0.05)",
-    },
   },
   scales: {
     breakpoints,

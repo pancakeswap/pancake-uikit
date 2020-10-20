@@ -19,10 +19,6 @@ const darkTheme: DefaultTheme = {
     text: "#ED4B9E",
     textDisabled: "#302B38",
     textSubtle: "#ED4B9E",
-    card: {
-      background: "#2B223E",
-      borderColor: "rgba(14, 14, 44, 0.05)",
-    },
   },
   scales: {
     breakpoints,
