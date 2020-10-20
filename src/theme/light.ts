@@ -2,8 +2,12 @@ import { DefaultTheme } from "styled-components";
 import mediaQueries, { breakpoints } from "./mediaQueries";
 
 const lightTheme: DefaultTheme = {
+  isDark: false,
   colors: {
     primary: "#1FC7D4",
+    primaryBright: "#53DEE9",
+    primaryDark: "#0098A1",
+    primaryWeak: "#53DEE9",
     secondary: "#7645D9",
     tertiary: "#EFF4F5",
     success: "#31D0AA",
@@ -11,7 +15,9 @@ const lightTheme: DefaultTheme = {
     contrast: "#191326",
     input: "#F4F2F7",
     background: "#FAF9FA",
+    backgroundDisabled: "#E9EAEB",
     text: "#452A7A",
+    textDisabled: "#BDC2C4",
     textSubtle: "#AEA0D6",
     card: {
       background: "#FFFFFF",

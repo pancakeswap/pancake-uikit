@@ -12,8 +12,12 @@ export type MediaQueries = {
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    isDark: boolean;
     colors: {
       primary: string;
+      primaryBright: string;
+      primaryDark: string;
+      primaryWeak: string;
       secondary: string;
       tertiary: string;
       success: string;
@@ -21,12 +25,10 @@ declare module "styled-components" {
       contrast: string;
       input: string;
       background: string;
+      backgroundDisabled: string;
       text: string;
+      textDisabled: string;
       textSubtle: string;
-      card: {
-        background: string;
-        borderColor: string;
-      };
     };
     scales: {
       breakpoints: Breakpoints;
