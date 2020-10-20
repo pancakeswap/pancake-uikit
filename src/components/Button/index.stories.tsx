@@ -36,7 +36,7 @@ export const Default: React.FC = () => {
         </Button>
       </Row>
       <Row>
-        <Button variant="tertiary">Outline</Button>
+        <Button variant="tertiary">Tertiary</Button>
         <Button variant="tertiary" disabled>
           Disabled
         </Button>
