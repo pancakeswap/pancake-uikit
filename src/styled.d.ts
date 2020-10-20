@@ -1,4 +1,5 @@
 import "styled-components";
+import { CardTheme } from "./components/Card/types";
 
 export type Breakpoints = string[];
 
@@ -30,6 +31,7 @@ declare module "styled-components" {
       textDisabled: string;
       textSubtle: string;
     };
+    card: CardTheme;
     scales: {
       breakpoints: Breakpoints;
       mediaQueries: MediaQueries;
