@@ -9,7 +9,7 @@ export * from "./components/Svg";
 export { default as Tag } from "./components/Tag";
 export { default as Text } from "./components/Text";
 export { default as Link } from "./components/Link";
-export { default as Panel } from "./components/Panel";
+export { default as ColorBox } from "./components/ColorBox";
 export { default as Toggle } from "./components/Toggle";
 export { default as ResetCSS } from "./ResetCSS";
 

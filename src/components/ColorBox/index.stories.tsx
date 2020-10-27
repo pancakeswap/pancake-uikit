@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-/* eslint-disable import/no-unresolved */
-import { Meta } from "@storybook/react/types-6-0";
-import Panel from "./index";
+import ColorBox from "./index";
 
 const Row = styled.div`
   margin-bottom: 32px;
@@ -13,16 +11,16 @@ const Row = styled.div`
 `;
 
 export default {
-  title: "Panel",
-  component: Panel,
+  title: "ColorBox",
+  component: ColorBox,
   argTypes: {},
-} as Meta;
+};
 
 export const Default: React.FC = () => {
   return (
     <div style={{ padding: "32px", width: "500px" }}>
       <Row>
-        <Panel>Panel</Panel>
+        <ColorBox>ColorBox</ColorBox>
       </Row>
     </div>
   );
