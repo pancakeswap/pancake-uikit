@@ -2,5 +2,6 @@ import "styled-components";
 import { PancakeTheme } from "./theme/types";
 
 declare module "styled-components" {
-  export interface DefaultTheme extends PancakeTheme {} // eslint-disable-line
+  /* eslint-disable @typescript-eslint/no-empty-interface */
+  export interface DefaultTheme extends PancakeTheme {}
 }
