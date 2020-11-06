@@ -20,10 +20,19 @@ const StyledNav = styled.nav`
 `;
 
 const StyledLink = styled.a`
-  margin-right: 16px;
+  margin-right: 8px;
 `;
 
-const Nav: React.FC<NavProps> = ({ account, connectCallbacks, logout, isDark, toggleTheme }) => {
+const Nav: React.FC<NavProps> = ({
+  account,
+  connectCallbacks,
+  logout,
+  isDark,
+  toggleTheme,
+  langs,
+  setLang,
+  currentLang,
+}) => {
   const [isOpened, setIsOpened] = useState(false);
   return (
     <StyledNav>
@@ -41,6 +50,9 @@ const Nav: React.FC<NavProps> = ({ account, connectCallbacks, logout, isDark, to
         logout={logout}
         isDark={isDark}
         toggleTheme={toggleTheme}
+        langs={langs}
+        setLang={setLang}
+        currentLang={currentLang}
       />
       <Overlay show={isOpened} onClick={() => setIsOpened(false)} role="presentation" />
     </StyledNav>

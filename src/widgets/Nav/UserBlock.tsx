@@ -26,31 +26,23 @@ const Container = styled.div`
   }
 `;
 
-const AccountButton = styled(Button).attrs({ size: "sm", variant: "secondary" })`
-  color: ${({ theme }) => theme.colors.text};
-  background-color: ${({ theme }) => theme.nav.background};
-  border-color: ${({ theme }) => theme.colors.tertiary};
-  &:hover:not(:disabled):not(:active) {
-    background-color: ${({ theme }) => theme.colors.tertiary};
-    border-color: ${({ theme }) => theme.colors.tertiary};
-  }
-`;
-
 const UserBlock: React.FC<Props> = ({ account, closeNav, connectCallbacks, logout }) => {
   const [onPresentConnectModal] = useModal(<ConnectModal connectCallbacks={connectCallbacks} />);
   const [onPresentAccountModal] = useModal(<AccountModal account={account} logout={logout} />);
-  const accountEllipsis = account ? `${account.substring(0, 6)}...${account.substring(account.length - 4)}` : null;
+  const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   return (
     <Container>
       {account ? (
-        <AccountButton
+        <Button
+          size="sm"
+          variant="tertiary"
           onClick={() => {
             onPresentAccountModal();
             closeNav();
           }}
         >
           {accountEllipsis}
-        </AccountButton>
+        </Button>
       ) : (
         <Button
           size="sm"

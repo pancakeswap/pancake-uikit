@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "../../components/Link";
-import config from "./config.json";
+import config from "./config";
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -25,7 +25,7 @@ const Footer: React.FC = () => (
     {config.map((entry) => {
       const attributes = entry.href.startsWith("http") ? { target: "blank", rel: "noopener noreferrer" } : {};
       return (
-        <Link href={entry.href} {...attributes}>
+        <Link key={entry.href} href={entry.href} {...attributes}>
           {entry.label}
         </Link>
       );

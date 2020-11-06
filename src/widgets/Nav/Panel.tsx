@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Link from "../../components/Link";
 import { CloseIcon } from "../../components/Svg";
 import Button from "../../components/Button";
+import Dropdown from "../../components/Dropdown";
+import Language from "./icons/Language";
 import UserBlock from "./UserBlock";
 import MobileOnlyButton from "./MobileOnlyButton";
 import config from "./config";
@@ -53,7 +55,7 @@ const StyledLink = styled(Link)`
   ${({ theme }) => theme.mediaQueries.md} {
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 12px;
   }
 `;
 
@@ -78,10 +80,23 @@ const ControlBlock = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
     order: 2;
     margin-left: 0;
+    flex-grow: 1;
+    justify-content: flex-end;
   }
 `;
 
-const Panel: React.FC<Props> = ({ show, account, closeNav, connectCallbacks, logout, isDark, toggleTheme }) => {
+const Panel: React.FC<Props> = ({
+  show,
+  account,
+  closeNav,
+  connectCallbacks,
+  logout,
+  isDark,
+  toggleTheme,
+  langs,
+  setLang,
+  currentLang,
+}) => {
   return (
     <StyledPanel show={show}>
       <MobileOnlyButton
@@ -100,8 +115,21 @@ const Panel: React.FC<Props> = ({ show, account, closeNav, connectCallbacks, log
       </LinkBlock>
       <ControlBlock>
         <Button size="sm" variant="text" onClick={() => toggleTheme(!isDark)}>
-          {isDark ? <Light /> : <Dark />}
+          {isDark ? <Light color="primary" /> : <Dark color="primary" />}
         </Button>
+        <Dropdown
+          target={
+            <Button startIcon={<Language color="primary" />} variant="text" size="sm" mr="4px">
+              {currentLang}
+            </Button>
+          }
+        >
+          {langs.map((lang) => (
+            <Button key={lang.code} variant="text" size="sm" onClick={() => setLang(lang)}>
+              {lang.language}
+            </Button>
+          ))}
+        </Dropdown>
       </ControlBlock>
       <UserBlock account={account} closeNav={closeNav} connectCallbacks={connectCallbacks} logout={logout} />
     </StyledPanel>
