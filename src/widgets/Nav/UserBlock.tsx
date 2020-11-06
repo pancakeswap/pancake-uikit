@@ -18,9 +18,11 @@ const Container = styled.div`
   align-items: center;
   order: 1;
   margin-bottom: 32px;
+  margin-left: 40px;
   ${({ theme }) => theme.mediaQueries.md} {
     order: 2;
     margin-bottom: 0;
+    margin-left: 0;
   }
 `;
 
@@ -42,7 +44,6 @@ const UserBlock: React.FC<Props> = ({ account, closeNav, connectCallbacks, logou
     <Container>
       {account ? (
         <AccountButton
-          ml="40px"
           onClick={() => {
             onPresentAccountModal();
             closeNav();
@@ -52,7 +53,6 @@ const UserBlock: React.FC<Props> = ({ account, closeNav, connectCallbacks, logou
         </AccountButton>
       ) : (
         <Button
-          ml="40px"
           size="sm"
           onClick={() => {
             onPresentConnectModal();

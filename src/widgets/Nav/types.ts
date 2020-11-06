@@ -12,4 +12,6 @@ export interface NavProps {
   account?: string;
   connectCallbacks: ConnectCallbackType[];
   logout: () => null;
+  isDark: boolean;
+  toggleTheme: (isDark: boolean) => null;
 }

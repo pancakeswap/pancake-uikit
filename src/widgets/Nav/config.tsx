@@ -11,10 +11,6 @@ export default {
       href: "/farm",
     },
     {
-      label: "Staking",
-      href: "/staking",
-    },
-    {
       label: "Syrup",
       href: "/syrup",
     },
