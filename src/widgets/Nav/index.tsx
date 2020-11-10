@@ -37,7 +37,7 @@ const Nav: React.FC<NavProps> = ({
   return (
     <StyledNav>
       <StyledLink href="/" aria-label="Pancake home page">
-        <Logo width="160px" height="100%" />
+        <Logo isDark={isDark} width="160px" height="100%" />
       </StyledLink>
       <MobileOnlyButton aria-label="Open mobile menu" onClick={() => setIsOpened((prevState) => !prevState)}>
         <HamburgerIcon />
