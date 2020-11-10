@@ -1,7 +1,7 @@
 import React from "react";
 import noop from "lodash/noop";
 import Nav from "./index";
-import { ConnectCallbackType, Lang } from "./types";
+import { ConnectCallbackType, LangType } from "./types";
 
 export default {
   title: "Nav",
@@ -17,7 +17,7 @@ const connectCallbacks: ConnectCallbackType[] = [
   { key: "walletconnect", callback: noop },
 ];
 
-const langs: Lang[] = [
+const langs: LangType[] = [
   { code: "en", language: "English" },
   { code: "ar", language: "العربية" },
   { code: "ca", language: "Català" },
