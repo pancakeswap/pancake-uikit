@@ -1,11 +1,6 @@
 import React from "react";
 import styled, { DefaultTheme } from "styled-components";
-import { Colors } from "../../theme/types";
-
-export interface CardRibbonProps {
-  variantColor?: keyof Colors;
-  text: string;
-}
+import { CardRibbonProps } from "./types";
 
 interface StyledCardRibbonProps extends CardRibbonProps {
   theme: DefaultTheme;
