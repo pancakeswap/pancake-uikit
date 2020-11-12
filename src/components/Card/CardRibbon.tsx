@@ -30,7 +30,7 @@ const StyledCardRibbon = styled.div<Partial<StyledCardRibbonProps>>`
     background-color: ${({ variantColor = "secondary", theme }) => theme.colors[variantColor]};
     content: "";
     height: 100%;
-    margin: 0 -1px; /* tweak */
+    margin: 0 -1px; /* Removes tiny gap */
     position: absolute;
     top: 0;
     width: 100%;
