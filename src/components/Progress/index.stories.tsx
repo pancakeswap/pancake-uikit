@@ -25,3 +25,24 @@ export const Default: React.FC = () => {
     </div>
   );
 };
+
+export const WithSecondary: React.FC = () => {
+  const [primaryStep, setPrimaryStep] = useState(random(1, 100));
+  const [secondaryStep, setSecondaryStep] = useState(random(1, 100));
+
+
+  return (
+    <div style={{ padding: "32px", width: "400px" }}>
+      <Progress primaryStep={primaryStep} secondaryStep={secondaryStep} />
+      <div style={{ marginTop: "32px" }}>
+        <Button type="button" size="sm" onClick={() => setPrimaryStep(random(1, 100))}>
+          Random Primary Progress
+        </Button>
+        <Button style={{ marginTop: "16px" }} type="button" size="sm" onClick={() => setSecondaryStep(random(1, 100))}>
+          Random Secondary Progress
+        </Button>
+      </div>
+    </div>
+  );
+};
+
