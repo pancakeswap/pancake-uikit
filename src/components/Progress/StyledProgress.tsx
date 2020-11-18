@@ -9,7 +9,9 @@ export const Bar = styled.div<BarProps>`
   top: 0;
   left: 0;
   background-color: ${(props) => (props.primary ? props.theme.colors.secondary : props.theme.colors.secondary + `80`)};
-  border-radius: 32px;
+  /* border-radius: 32px; */
+  border-top-left-radius: 32px;
+  border-bottom-left-radius: 32px;
   height: 16px;
   transition: width 200ms ease;
 `;

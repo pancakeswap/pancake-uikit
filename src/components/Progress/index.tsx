@@ -1,10 +1,12 @@
 import React from "react";
 import StyledProgress, { Bar } from "./StyledProgress";
+import ProgressBunnyWrapper from "./ProgressBunnyWrapper";
+import { ProgressBunny } from "../Svg";
 
 export interface ProgressProps {
   primaryStep?: number;
   secondaryStep?: number;
-  bunnyMarker?: boolean
+  showProgressBunny?: boolean;
 }
 
 const stepGuard = (step: number) => {
@@ -19,9 +21,14 @@ const stepGuard = (step: number) => {
   return step;
 };
 
-const Progress: React.FC<ProgressProps> = ({ primaryStep = 0, secondaryStep = null, bunnyMarker = false }) => {
+const Progress: React.FC<ProgressProps> = ({ primaryStep = 0, secondaryStep = null, showProgressBunny = false }) => {
   return (
     <StyledProgress>
+      {showProgressBunny ? (
+        <ProgressBunnyWrapper style={{ left: `${stepGuard(primaryStep)}%` }}>
+          <ProgressBunny />
+        </ProgressBunnyWrapper>
+      ) : null}
       <Bar primary style={{ width: `${stepGuard(primaryStep)}%` }} />
       {secondaryStep ? <Bar style={{ width: `${stepGuard(secondaryStep)}%` }} /> : null}
     </StyledProgress>
