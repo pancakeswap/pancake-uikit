@@ -16,7 +16,7 @@ export const Default: React.FC = () => {
 
   return (
     <div style={{ padding: "32px", width: "400px" }}>
-      <Progress step={progress} />
+      <Progress primaryStep={progress} />
       <div style={{ marginTop: "32px" }}>
         <Button type="button" size="sm" onClick={handleClick}>
           Random Progress

@@ -2,7 +2,8 @@ import React from "react";
 import StyledProgress, { Bar } from "./StyledProgress";
 
 export interface ProgressProps {
-  step?: number;
+  primaryStep?: number;
+  secondaryStep?: number;
 }
 
 const stepGuard = (step: number) => {
@@ -17,10 +18,11 @@ const stepGuard = (step: number) => {
   return step;
 };
 
-const Progress: React.FC<ProgressProps> = ({ step = 0 }) => {
+const Progress: React.FC<ProgressProps> = ({ primaryStep = 0, secondaryStep = null }) => {
   return (
     <StyledProgress>
-      <Bar style={{ width: `${stepGuard(step)}%` }} />
+      <Bar primary style={{ width: `${stepGuard(primaryStep)}%` }} />
+      {secondaryStep ? <Bar style={{ width: `${stepGuard(secondaryStep)}%` }} /> : null}
     </StyledProgress>
   );
 };
