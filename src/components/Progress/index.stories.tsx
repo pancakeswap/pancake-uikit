@@ -27,9 +27,8 @@ export const Default: React.FC = () => {
 };
 
 export const WithSecondary: React.FC = () => {
-  const [primaryStep, setPrimaryStep] = useState(random(1, 100));
-  const [secondaryStep, setSecondaryStep] = useState(random(1, 100));
-
+  const [primaryStep, setPrimaryStep] = useState(10);
+  const [secondaryStep, setSecondaryStep] = useState(40);
 
   return (
     <div style={{ padding: "32px", width: "400px" }}>
@@ -45,4 +44,3 @@ export const WithSecondary: React.FC = () => {
     </div>
   );
 };
-

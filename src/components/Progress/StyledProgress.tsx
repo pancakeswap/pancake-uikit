@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
 interface BarProps {
-  primary: boolean;
-};
+  primary?: boolean;
+}
 
 export const Bar = styled.div<BarProps>`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: ${props => props.primary ? props.theme.colors.secondary : props.theme.colors.secondary + `80` };
+  background-color: ${(props) => (props.primary ? props.theme.colors.secondary : props.theme.colors.secondary + `80`)};
   border-radius: 32px;
   height: 16px;
   transition: width 200ms ease;
 `;
 
 Bar.defaultProps = {
-  primary: false
-}
+  primary: false,
+};
 
 const StyledProgress = styled.div`
   position: relative;
@@ -25,7 +25,5 @@ const StyledProgress = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.inset};
   height: 16px;
 `;
-
-
 
 export default StyledProgress;
