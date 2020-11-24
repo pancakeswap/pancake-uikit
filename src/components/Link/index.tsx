@@ -37,3 +37,6 @@ const LinkExternal: React.FC<LinkProps> = ({ children, ...props }) => {
 };
 
 export { Link, LinkExternal };
+
+// Currently breaks the build without a default export
+export default null;
