@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { CheckboxProps, scales } from "./types";
 
-const getSize = ({ scale }: CheckboxProps) => {
+const getScale = ({ scale }: CheckboxProps) => {
   switch (scale) {
     case scales.SM:
       return "24px";
@@ -17,8 +17,8 @@ const Checkbox = styled.input.attrs({ type: "checkbox" })<CheckboxProps>`
   cursor: pointer;
   position: relative;
   display: inline-block;
-  height: ${getSize};
-  width: ${getSize};
+  height: ${getScale};
+  width: ${getScale};
   vertical-align: middle;
   transition: background-color 0.2s ease-in-out;
   border: 0;
