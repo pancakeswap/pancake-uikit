@@ -44,6 +44,9 @@ export type Colors = {
   textDisabled: string;
   textSubtle: string;
   borderColor: string;
+
+  // Brand colors
+  binance: string;
 };
 
 export type ZIndices = {
