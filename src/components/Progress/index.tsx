@@ -24,11 +24,11 @@ const stepGuard = (step: number) => {
 const Progress: React.FC<ProgressProps> = ({ primaryStep = 0, secondaryStep = null, showProgressBunny = false }) => {
   return (
     <StyledProgress>
-      {showProgressBunny ? (
+      {showProgressBunny && (
         <ProgressBunnyWrapper style={{ left: `${stepGuard(primaryStep)}%` }}>
           <ProgressBunny />
         </ProgressBunnyWrapper>
-      ) : null}
+      )}
       <Bar primary style={{ width: `${stepGuard(primaryStep)}%` }} />
       {secondaryStep ? <Bar style={{ width: `${stepGuard(secondaryStep)}%` }} /> : null}
     </StyledProgress>
