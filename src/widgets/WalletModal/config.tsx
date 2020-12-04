@@ -15,7 +15,7 @@ const connectors: Config[] = [
   {
     title: "BinanceChain",
     icon: BinanceChain,
-    connectorId: "injected",
+    connectorId: "bsc",
   },
   {
     title: "TrustWallet",
