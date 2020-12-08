@@ -28,6 +28,7 @@ export type ButtonProps = {
   fullWidth?: boolean;
   as?: "a" | "button" | typeof Link;
   href?: string;
+  external?: boolean;
 } & ButtonTypes &
   SpaceProps;
 
