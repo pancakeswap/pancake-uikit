@@ -54,6 +54,15 @@ export const Default: React.FC = () => {
           Small
         </Button>
       </Row>
+      <Row>
+        <Button variant="danger">Danger</Button>
+        <Button variant="danger" disabled>
+          Disabled
+        </Button>
+        <Button variant="danger" size="sm">
+          Small
+        </Button>
+      </Row>
     </>
   );
 };
