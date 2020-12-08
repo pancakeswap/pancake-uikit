@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "../../components/Link";
-import getExternalLinkProps from "../../util/getExternalLinkProps";
 import config from "./config";
 
 const StyledFooter = styled.footer`
@@ -24,9 +23,8 @@ const StyledFooter = styled.footer`
 const Footer: React.FC = () => (
   <StyledFooter>
     {config.map((entry) => {
-      const attributes = entry.href.startsWith("http") ? getExternalLinkProps() : {};
       return (
-        <Link key={entry.href} href={entry.href} {...attributes}>
+        <Link key={entry.href} href={entry.href} external={entry.href.startsWith("http")}>
           {entry.label}
         </Link>
       );

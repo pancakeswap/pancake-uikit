@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "../../components/Link";
 import { HelpIcon } from "../../components/Svg";
-import getExternalLinkProps from "../../util/getExternalLinkProps";
 import { Modal } from "../Modal";
 import WalletCard from "./WalletCard";
 import config from "./config";
@@ -33,7 +32,7 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null }) => (
     ))}
     <HelpLink
       href="https://docs.pancakeswap.finance/guides/faq#how-do-i-set-up-my-wallet-on-binance-smart-chain"
-      {...getExternalLinkProps()}
+      external
     >
       <HelpIcon color="primary" mr="6px" />
       Learn how to connect
