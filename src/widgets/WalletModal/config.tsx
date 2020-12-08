@@ -3,6 +3,7 @@ import MathWallet from "./icons/MathWallet";
 import TokenPocket from "./icons/TokenPocket";
 import TrustWallet from "./icons/TrustWallet";
 import WalletConnect from "./icons/WalletConnect";
+import SafePalWallet from "./icons/SafePalWallet";
 import { Config } from "./types";
 
 const connectors: Config[] = [
@@ -24,6 +25,11 @@ const connectors: Config[] = [
   {
     title: "TokenPocket",
     icon: TokenPocket,
+    connectorId: "injected",
+  },
+  {
+    title: "SafePalWallet",
+    icon: SafePalWallet,
     connectorId: "injected",
   },
   {
