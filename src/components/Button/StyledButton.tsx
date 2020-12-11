@@ -25,6 +25,9 @@ const StyledButton = styled.button<ButtonProps>`
   font-family: inherit;
   font-size: 16px;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
   /* max-content instead of auto for Safari fix */
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "max-content")};
   height: ${({ size }) => (size === "sm" ? "32px" : "48px")};
