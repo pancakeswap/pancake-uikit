@@ -13,7 +13,7 @@ it("renders correctly", () => {
       >
         <input
           checked=""
-          class="sc-gsTCUz gzfcvx"
+          class="sc-gsTCUz geJjSd"
           type="checkbox"
         />
         <div
