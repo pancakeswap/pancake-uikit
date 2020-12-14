@@ -45,19 +45,26 @@ const Radio = styled.input.attrs({ type: "radio" })<RadioProps>`
     top: 6px;
     width: ${getCheckedScale};
   }
-  &:disabled {
-    cursor: default;
-    opacity: 0.6;
+
+  &:hover:not(:disabled):not(:checked) {
+    box-shadow: ${({ theme }) => theme.shadows.focus};
   }
+
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.secondary};
+    box-shadow: ${({ theme }) => theme.shadows.focus};
   }
+
   &:checked {
     background-color: ${({ theme }) => theme.colors.success};
     &:after {
       background-color: ${({ theme }) => theme.radio.handleBackground};
     }
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
   }
 `;
 
