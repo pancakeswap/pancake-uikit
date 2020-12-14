@@ -1,16 +1,16 @@
 import React from "react";
 import { renderWithTheme } from "../../testHelpers";
-import Tag from "./index";
+import { Button } from "../../components/Button";
 
 it("renders correctly", () => {
-  const { asFragment } = renderWithTheme(<Tag>Core</Tag>);
+  const { asFragment } = renderWithTheme(<Button>Submit</Button>);
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
-      <div
-        class="sc-bdfBwQ cVEdKv"
+      <button
+        class="sc-bdfBwQ Fsqj"
       >
-        Core
-      </div>
+        Submit
+      </button>
     </DocumentFragment>
   `);
 });
