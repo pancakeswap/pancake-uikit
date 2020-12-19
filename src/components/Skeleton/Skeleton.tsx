@@ -20,12 +20,18 @@ const Root = styled.div`
   background-color: rgba(0, 0, 0, 0.11);
 `;
 
-const Pulse = styled(Root)`
+const Pulse = styled(Root)<{ width: number | undefined, height: number | undefined }>`
   animation: ${pulse} 2s infinite ease-out;
+  width: ${props => (props.width ? `${props.width}px` : '100%')};
+  height: ${props => (props.height ? `${props.height}px` : '1.2em')};
 `;
 
-const Skeleton: React.FC<SkeletonProps> = ({ width = 100, height = 100, variant, animation }) => {
-  return <Pulse style={{ width: width, height: height }} />;
+const Skeleton: React.FC<SkeletonProps> = ({ width, height, variant, animation }) => {
+  return (
+    <>
+      <Pulse width={width} height={height}/>
+    </>
+  );
 };
 
 export default Skeleton;
