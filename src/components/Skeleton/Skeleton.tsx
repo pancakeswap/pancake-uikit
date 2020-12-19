@@ -31,7 +31,7 @@ const Root = styled.div<{ variant: string; width: number | undefined; height: nu
   width: ${({ width }) => (width ? `${width}px` : "100%")};
   height: ${({ height }) => (height ? `${height}px` : "100%")};
   ${({ variant }) =>
-    variant == "circle" &&
+    variant === "circle" &&
     `
       border-radius: 50%
   `}
@@ -59,8 +59,8 @@ const Waves = styled(Root)`
 const Skeleton: React.FC<SkeletonProps> = ({ width, height, variant = "rect", animation = "pulse" }) => {
   return (
     <>
-      {animation == "pulse" && <Pulse variant={variant} width={width} height={height} />}
-      {animation == "waves" && <Waves variant={variant} width={width} height={height} />}
+      {animation === "pulse" && <Pulse variant={variant} width={width} height={height} />}
+      {animation === "waves" && <Waves variant={variant} width={width} height={height} />}
     </>
   );
 };
