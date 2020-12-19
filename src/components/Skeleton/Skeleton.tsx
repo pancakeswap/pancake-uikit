@@ -15,21 +15,27 @@ const pulse = keyframes`
 `;
 
 const Root = styled.div`
-  height: 1.2em;
+  min-height: 20px;
   display: block;
   background-color: rgba(0, 0, 0, 0.11);
+  border-radius: 4px;
 `;
 
-const Pulse = styled(Root)<{ width: number | undefined, height: number | undefined }>`
+
+
+const Pulse = styled(Root) <{ width: number | undefined; height: number | undefined, variant: string }>`
   animation: ${pulse} 2s infinite ease-out;
-  width: ${props => (props.width ? `${props.width}px` : '100%')};
-  height: ${props => (props.height ? `${props.height}px` : '1.2em')};
+  width: ${({ width }) => (width ? `${width}px` : "100%")};
+  height: ${({ height }) => (height ? `${height}px` : "100%")};
+  ${({ variant }) => variant == 'circle' && `
+      border-radius: 50%
+  `}
 `;
 
-const Skeleton: React.FC<SkeletonProps> = ({ width, height, variant, animation }) => {
+const Skeleton: React.FC<SkeletonProps> = ({ width, height, variant = "rect", animation }) => {
   return (
     <>
-      <Pulse width={width} height={height}/>
+      <Pulse variant={variant} width={width} height={height} />
     </>
   );
 };
