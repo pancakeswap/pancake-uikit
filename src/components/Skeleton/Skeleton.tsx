@@ -2,6 +2,16 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { SkeletonProps } from "./types";
 
+const waves = keyframes`
+   from {
+        left: -150px;
+    }
+    to   {
+        left: 100%;
+    }
+`;
+
+
 const pulse = keyframes`
   0% {
     opacity: 1;
@@ -14,28 +24,46 @@ const pulse = keyframes`
   }
 `;
 
-const Root = styled.div`
+const Root = styled.div<{ variant: string }>`
   min-height: 20px;
   display: block;
   background-color: rgba(0, 0, 0, 0.11);
   border-radius: 4px;
-`;
-
-
-
-const Pulse = styled(Root) <{ width: number | undefined; height: number | undefined, variant: string }>`
-  animation: ${pulse} 2s infinite ease-out;
-  width: ${({ width }) => (width ? `${width}px` : "100%")};
-  height: ${({ height }) => (height ? `${height}px` : "100%")};
-  ${({ variant }) => variant == 'circle' && `
+  ${({ variant }) =>
+    variant == "circle" &&
+    `
       border-radius: 50%
   `}
 `;
 
-const Skeleton: React.FC<SkeletonProps> = ({ width, height, variant = "rect", animation }) => {
+const Pulse = styled(Root) <{ width: number | undefined; height: number | undefined }>`
+  animation: ${pulse} 2s infinite ease-out;
+  width: ${({ width }) => (width ? `${width}px` : "100%")};
+  height: ${({ height }) => (height ? `${height}px` : "100%")};
+`;
+
+const Waves = styled(Root) <{ width: number | undefined; height: number | undefined }>`
+  position: relative;
+  overflow: hidden;
+  width: ${({ width }) => (width ? `${width}px` : "100%")};
+  height: ${({ height }) => (height ? `${height}px` : "100%")};
+  &:before{
+    content: '';
+    position: absolute;
+    background-image: linear-gradient(90deg, transparent, rgba(187, 187, 187, 0.5),transparent);
+    top: 0;
+    left: -150px;
+    height: 100%;
+    width: 150px;
+    animation: ${waves} 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+  }
+`;
+
+const Skeleton: React.FC<SkeletonProps> = ({ width, height, variant = "rect", animation = "pulse" }) => {
   return (
     <>
-      <Pulse variant={variant} width={width} height={height} />
+      {animation == "pulse" && (<Pulse variant={variant} width={width} height={height} />)}
+      {animation == "waves" && (<Waves variant={variant} width={width} height={height} />)}
     </>
   );
 };

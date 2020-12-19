@@ -37,9 +37,14 @@ export const Text: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  return <h1 style={{ width: 200 }}>{loading ? <Skeleton /> : "H1"}</h1>;
+};
+
+export const Animation: React.FC = () => {
   return (
-    <h1 style={{ width: 200 }}>
-      {loading ? <Skeleton /> : 'H1'}
-    </h1>
+    <>
+      <Skeleton animation="waves" variant="circle" width={40} height={40} />
+      <Skeleton animation="waves" />
+    </>
   );
 };
