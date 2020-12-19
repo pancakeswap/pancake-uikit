@@ -26,7 +26,7 @@ const pulse = keyframes`
 const Root = styled.div<{ variant: string; width: number | undefined; height: number | undefined }>`
   min-height: 20px;
   display: block;
-  background-color: rgba(0, 0, 0, 0.11);
+  background-color: #bdc2c4;
   border-radius: 4px;
   width: ${({ width }) => (width ? `${width}px` : "100%")};
   height: ${({ height }) => (height ? `${height}px` : "100%")};
@@ -47,7 +47,7 @@ const Waves = styled(Root)`
   &:before {
     content: "";
     position: absolute;
-    background-image: linear-gradient(90deg, transparent, rgba(187, 187, 187, 0.5), transparent);
+    background-image: linear-gradient(90deg, transparent, rgba(243, 243, 243, 0.5), transparent);
     top: 0;
     left: -150px;
     height: 100%;

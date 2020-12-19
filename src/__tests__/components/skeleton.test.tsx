@@ -7,18 +7,18 @@ it("renders correctly", () => {
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <div
-        class="sc-bdfBwQ sc-gsTCUz ljGljN cfCblg"
+        class="sc-bdfBwQ sc-gsTCUz hKVZuD cfCblg"
       />
     </DocumentFragment>
   `);
 });
 
 it("renders correctly avatar", () => {
-  const { asFragment } = renderWithTheme(<Skeleton width={50} height={50} variant="circle"/>);
+  const { asFragment } = renderWithTheme(<Skeleton width={50} height={50} variant="circle" />);
   expect(asFragment()).toMatchInlineSnapshot(`
       <DocumentFragment>
         <div
-          class="sc-bdfBwQ sc-gsTCUz hbabpS cfCblg"
+          class="sc-bdfBwQ sc-gsTCUz ypJbA cfCblg"
           height="50"
           width="50"
         />
@@ -27,11 +27,11 @@ it("renders correctly avatar", () => {
 });
 
 it("renders correctly waves animation", () => {
-  const { asFragment } = renderWithTheme(<Skeleton width={50} height={50} animation="waves"/>);
+  const { asFragment } = renderWithTheme(<Skeleton width={50} height={50} animation="waves" />);
   expect(asFragment()).toMatchInlineSnapshot(`
       <DocumentFragment>
         <div
-          class="sc-bdfBwQ sc-dlfnbm hSXLgJ jUNhTn"
+          class="sc-bdfBwQ sc-dlfnbm Yklxb kbfuTg"
           height="50"
           width="50"
         />
