@@ -4,30 +4,36 @@ import Skeleton from "./Skeleton";
 export default {
   title: "Skeleton",
   component: Skeleton,
-  argTypes: {},
+  argTypes: {
+    width: {control: 'number'}, 
+    height: {control: 'number'},
+  },
 };
 
-export const Default: React.FC = () => {
-  return <Skeleton />;
+
+export const Default: React.FC = (args) => {
+  return <Skeleton {...args}/>;
 };
 
-export const DefinedSize: React.FC = () => {
-  return (
-    <>
-      <Skeleton width={300} height={200} />
-    </>
-  );
+export const Avatar = Default.bind({});
+Avatar.args = {
+  width: 40,
+  height: 40,
+  variant:"circle"
 };
 
-export const Avatar: React.FC = () => {
-  return (
-    <>
-      <Skeleton variant="circle" width={40} height={40} />
-    </>
-  );
+export const Animation = Default.bind({});
+Animation.args = {
+  width: 100,
+  height: 200,
+  animation: "waves"
 };
 
-export const Text: React.FC = () => {
+export const ParentSize: React.FC = (args) => {
+  return <div style={{ width: 200, height: 90 }}> <Skeleton {...args}/> </div>;
+};
+
+export const Text: React.FC = (args) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -37,14 +43,7 @@ export const Text: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return <h1 style={{ width: 200 }}>{loading ? <Skeleton /> : "H1"}</h1>;
+  return <h1 style={{ width: 200 }}>{loading ? <Skeleton {...args}/> : "H1"}</h1>;
 };
 
-export const Animation: React.FC = () => {
-  return (
-    <>
-      <Skeleton animation="waves" variant="circle" width={40} height={40} />
-      <Skeleton animation="waves" />
-    </>
-  );
-};
+
