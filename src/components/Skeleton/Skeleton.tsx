@@ -27,7 +27,6 @@ const Root = styled.div<{ variant: SkeletonProps["variant"]; width?: number; hei
   min-height: 20px;
   display: block;
   background-color: ${({ theme }) => theme.colors.textDisabled};
-  border-radius: 4px;
   width: ${({ width }) => (width ? `${width}px` : "100%")};
   height: ${({ height }) => (height ? `${height}px` : "100%")};
   border-radius: ${({ variant, theme }) => (variant === VARIANT.CIRCLE ? theme.radii.circle : theme.radii.small)};
