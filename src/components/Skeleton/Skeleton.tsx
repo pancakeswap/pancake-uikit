@@ -23,7 +23,7 @@ const pulse = keyframes`
   }
 `;
 
-const Root = styled.div<{ variant: string; width?: number; height?: number }>`
+const Root = styled.div<{ variant: SkeletonProps["variant"]; width?: number; height?: number }>`
   min-height: 20px;
   display: block;
   background-color: ${({ theme }) => theme.colors.textDisabled};
