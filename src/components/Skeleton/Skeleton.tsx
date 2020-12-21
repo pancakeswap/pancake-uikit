@@ -26,7 +26,7 @@ const pulse = keyframes`
 const Root = styled.div<{ variant: string; width?: number; height?: number }>`
   min-height: 20px;
   display: block;
-  background-color: #bdc2c4;
+  background-color: ${({ theme }) => theme.colors.textDisabled};
   border-radius: 4px;
   width: ${({ width }) => (width ? `${width}px` : "100%")};
   height: ${({ height }) => (height ? `${height}px` : "100%")};
