@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { SkeletonProps } from "./types";
+import { SkeletonProps, animation as ANIMATION, variant as VARIANT } from "./types";
 
 const waves = keyframes`
    from {
@@ -23,18 +23,14 @@ const pulse = keyframes`
   }
 `;
 
-const Root = styled.div<{ variant: string; width: number | undefined; height: number | undefined }>`
+const Root = styled.div<{ variant: string; width?: number; height?: number }>`
   min-height: 20px;
   display: block;
   background-color: #bdc2c4;
   border-radius: 4px;
   width: ${({ width }) => (width ? `${width}px` : "100%")};
   height: ${({ height }) => (height ? `${height}px` : "100%")};
-  ${({ variant }) =>
-    variant === "circle" &&
-    `
-      border-radius: 50%
-  `}
+  border-radius: ${({ variant, theme }) => (variant === VARIANT.CIRCLE ? theme.radii.circle : theme.radii.small)};
 `;
 
 const Pulse = styled(Root)`
@@ -56,11 +52,11 @@ const Waves = styled(Root)`
   }
 `;
 
-const Skeleton: React.FC<SkeletonProps> = ({ width, height, variant = "rect", animation = "pulse" }) => {
+const Skeleton: React.FC<SkeletonProps> = ({ width, height, variant = VARIANT.RECT, animation = ANIMATION.PULSE }) => {
   return (
     <>
-      {animation === "pulse" && <Pulse variant={variant} width={width} height={height} />}
-      {animation === "waves" && <Waves variant={variant} width={width} height={height} />}
+      {animation === ANIMATION.PULSE && <Pulse variant={variant} width={width} height={height} />}
+      {animation === ANIMATION.WAVES && <Waves variant={variant} width={width} height={height} />}
     </>
   );
 };
