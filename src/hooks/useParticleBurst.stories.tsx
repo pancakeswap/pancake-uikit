@@ -83,3 +83,22 @@ export const DisableUnderCondition: React.FC = () => {
     </div>
   );
 };
+
+export const StopAndStart: React.FC = () => {
+  const { initialize, teardown } = useParticleBurst({ imgSrc: bunnySantaPath });
+
+  const handleInitialize = () => initialize();
+  const handleTeardown = () => teardown();
+
+  return (
+    <div style={{ padding: "32px" }}>
+      <Text mb="8px">100 particles (beware of performance)</Text>
+      <Button variant="secondary" onClick={handleInitialize} mr="8px">
+        Start Bursts
+      </Button>
+      <Button variant="tertiary" onClick={handleTeardown}>
+        Stop Bursts
+      </Button>
+    </div>
+  );
+};

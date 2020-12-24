@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import debounce from "lodash/debounce";
 
 type ParticleOptions = {
@@ -78,39 +78,44 @@ const defaultOptions = {
 /**
  * @see https://css-tricks.com/playing-with-particles-using-the-web-animations-api/
  */
-const useParticleBurst = (options: Options): void => {
+const useParticleBurst = (options: Options): { initialize: () => void; teardown: () => void } => {
   const { selector, numberOfParticles, debounceDuration, imgSrc, disableWhen, particleOptions } = {
     ...defaultOptions,
     ...options,
   };
 
-  useEffect(() => {
-    const listener = debounce(
-      (event: MouseEvent) => {
-        const isDisabled = disableWhen && disableWhen();
+  const makeListener = useCallback(
+    () =>
+      debounce(
+        (event: MouseEvent) => {
+          const isDisabled = disableWhen && disableWhen();
 
-        if (!isDisabled) {
-          const node = event.currentTarget as HTMLElement;
+          if (!isDisabled) {
+            const node = event.currentTarget as HTMLElement;
 
-          if (event.clientX === 0 && event.clientY === 0) {
-            const { left, width, top, height } = node.getBoundingClientRect();
-            const x = left + width / 2;
-            const y = top + height / 2;
+            if (event.clientX === 0 && event.clientY === 0) {
+              const { left, width, top, height } = node.getBoundingClientRect();
+              const x = left + width / 2;
+              const y = top + height / 2;
 
-            for (let i = 0; i < numberOfParticles; i += 1) {
-              createParticle(x, y, imgSrc, particleOptions);
-            }
-          } else {
-            for (let i = 0; i < numberOfParticles; i += 1) {
-              createParticle(event.clientX, event.clientY + window.scrollY, imgSrc, particleOptions);
+              for (let i = 0; i < numberOfParticles; i += 1) {
+                createParticle(x, y, imgSrc, particleOptions);
+              }
+            } else {
+              for (let i = 0; i < numberOfParticles; i += 1) {
+                createParticle(event.clientX, event.clientY + window.scrollY, imgSrc, particleOptions);
+              }
             }
           }
-        }
-      },
-      debounceDuration,
-      { leading: true }
-    );
+        },
+        debounceDuration,
+        { leading: true }
+      ),
+    [debounceDuration, numberOfParticles, imgSrc, disableWhen, particleOptions]
+  );
+  const listener = makeListener();
 
+  const initialize = useCallback(() => {
     if (selector) {
       document.querySelectorAll<HTMLElement>(selector).forEach((element) => {
         element.addEventListener("click", listener);
@@ -118,17 +123,24 @@ const useParticleBurst = (options: Options): void => {
     } else {
       document.addEventListener("click", listener);
     }
+  }, [selector, listener]);
 
-    return () => {
-      if (selector) {
-        document.querySelectorAll<HTMLElement>(selector).forEach((element) => {
-          element.removeEventListener("click", listener);
-        });
-      } else {
-        document.removeEventListener("click", listener);
-      }
-    };
-  }, [selector, numberOfParticles, imgSrc, debounceDuration, disableWhen, particleOptions]);
+  const teardown = useCallback(() => {
+    if (selector) {
+      document.querySelectorAll<HTMLElement>(selector).forEach((element) => {
+        element.removeEventListener("click", listener);
+      });
+    } else {
+      document.removeEventListener("click", listener);
+    }
+  }, [selector, listener]);
+
+  useEffect(() => {
+    initialize();
+    return () => teardown();
+  }, [initialize, teardown]);
+
+  return { initialize, teardown };
 };
 
 export default useParticleBurst;
