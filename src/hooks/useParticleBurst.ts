@@ -8,7 +8,7 @@ type ParticleOptions = {
 
 const defaultParticleOptions = {
   size: 30,
-  distance: 400,
+  distance: 500,
 };
 
 const createParticle = (x: number, y: number, imgSrc: string, options: ParticleOptions = {}) => {
@@ -70,7 +70,7 @@ type Options = {
 
 const defaultOptions = {
   numberOfParticles: 30,
-  debounceDuration: 100,
+  debounceDuration: 500,
   particleOptions: {},
 };
 
