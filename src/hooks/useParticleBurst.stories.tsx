@@ -66,3 +66,20 @@ export const AdjustNumberOfParticles: React.FC = () => {
     </div>
   );
 };
+
+export const DisableUnderCondition: React.FC = () => {
+  const disableWhen = () => {
+    const date = new Date();
+    const currentMinutes = date.getMinutes();
+
+    return currentMinutes % 2 !== 0;
+  };
+  useParticleBurst({ selector: "button", imgSrc: bunnySantaPath, disableWhen });
+
+  return (
+    <div style={{ padding: "32px" }}>
+      <Text mb="8px">Will only burst when current minute is even</Text>
+      <Button variant="success">Click Me</Button>
+    </div>
+  );
+};

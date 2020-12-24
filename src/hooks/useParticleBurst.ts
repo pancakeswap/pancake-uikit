@@ -65,12 +65,13 @@ type Options = {
   selector?: string;
   numberOfParticles?: number;
   debounceDuration?: number;
+  disableWhen?: () => boolean;
   particleOptions?: ParticleOptions;
 };
 
 const defaultOptions = {
   numberOfParticles: 30,
-  debounceDuration: 500,
+  debounceDuration: 200,
   particleOptions: {},
 };
 
@@ -78,7 +79,7 @@ const defaultOptions = {
  * @see https://css-tricks.com/playing-with-particles-using-the-web-animations-api/
  */
 const useParticleBurst = (options: Options): void => {
-  const { selector, numberOfParticles, debounceDuration, imgSrc, particleOptions } = {
+  const { selector, numberOfParticles, debounceDuration, imgSrc, disableWhen, particleOptions } = {
     ...defaultOptions,
     ...options,
   };
@@ -86,19 +87,23 @@ const useParticleBurst = (options: Options): void => {
   useEffect(() => {
     const listener = debounce(
       (event: MouseEvent) => {
-        const node = event.target as HTMLElement;
+        const isDisabled = disableWhen && disableWhen();
 
-        if (event.clientX === 0 && event.clientY === 0) {
-          const { left, width, top, height } = node.getBoundingClientRect();
-          const x = left + width / 2;
-          const y = top + height / 2;
+        if (!isDisabled) {
+          const node = event.currentTarget as HTMLElement;
 
-          for (let i = 0; i < numberOfParticles; i += 1) {
-            createParticle(x, y, imgSrc, particleOptions);
-          }
-        } else {
-          for (let i = 0; i < numberOfParticles; i += 1) {
-            createParticle(event.clientX, event.clientY + window.scrollY, imgSrc, particleOptions);
+          if (event.clientX === 0 && event.clientY === 0) {
+            const { left, width, top, height } = node.getBoundingClientRect();
+            const x = left + width / 2;
+            const y = top + height / 2;
+
+            for (let i = 0; i < numberOfParticles; i += 1) {
+              createParticle(x, y, imgSrc, particleOptions);
+            }
+          } else {
+            for (let i = 0; i < numberOfParticles; i += 1) {
+              createParticle(event.clientX, event.clientY + window.scrollY, imgSrc, particleOptions);
+            }
           }
         }
       },
@@ -123,7 +128,7 @@ const useParticleBurst = (options: Options): void => {
         document.removeEventListener("click", listener);
       }
     };
-  }, [selector, numberOfParticles, imgSrc, debounceDuration, particleOptions]);
+  }, [selector, numberOfParticles, imgSrc, debounceDuration, disableWhen, particleOptions]);
 };
 
 export default useParticleBurst;
