@@ -31,6 +31,7 @@ const Nav: React.FC<NavProps> = ({
   setLang,
   currentLang,
   cakePriceUsd,
+  baseUrl,
 }) => {
   const [isOpened, setIsOpened] = useState(false);
   return (
@@ -53,6 +54,7 @@ const Nav: React.FC<NavProps> = ({
         setLang={setLang}
         currentLang={currentLang}
         cakePriceUsd={cakePriceUsd}
+        baseUrl={baseUrl}
       />
       <Overlay show={isOpened} onClick={() => setIsOpened(false)} role="presentation" />
     </StyledNav>

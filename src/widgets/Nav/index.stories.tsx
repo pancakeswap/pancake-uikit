@@ -54,3 +54,22 @@ export const NotConnected: React.FC = () => {
     </BrowserRouter>
   );
 };
+
+export const WithBaseUrl: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <Nav
+        account="0xbdda50183d817c3289f895a4472eb475967dc980"
+        login={noop}
+        logout={noop}
+        isDark={false}
+        toggleTheme={noop}
+        langs={langs}
+        setLang={noop}
+        currentLang="EN"
+        cakePriceUsd={0.23158668932877668}
+        baseUrl="https://pancakeswap.finance"
+      />
+    </BrowserRouter>
+  );
+};

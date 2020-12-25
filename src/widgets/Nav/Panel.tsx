@@ -16,6 +16,7 @@ import { NavProps } from "./types";
 interface Props extends NavProps {
   show: boolean;
   closeNav: () => void;
+  baseUrl?: string;
 }
 
 const StyledPanel = styled.div<{ show: boolean }>`
@@ -89,6 +90,18 @@ const ControlBlock = styled.div`
   }
 `;
 
+const getUrl = (href: string, baseUrl?: string) => {
+  if (href.startsWith("http")) {
+    return href;
+  }
+
+  if (baseUrl) {
+    return `${baseUrl}${href}`;
+  }
+
+  return href;
+};
+
 const Panel: React.FC<Props> = ({
   show,
   account,
@@ -101,6 +114,7 @@ const Panel: React.FC<Props> = ({
   setLang,
   currentLang,
   cakePriceUsd,
+  baseUrl,
 }) => {
   return (
     <StyledPanel show={show}>
@@ -124,17 +138,23 @@ const Panel: React.FC<Props> = ({
                   </div>
                 }
               >
-                {entry.items.map((item) => (
-                  <MenuLink key={item.href} href={item.href} onClick={closeNav}>
-                    {item.label}
-                  </MenuLink>
-                ))}
+                {entry.items.map((item) => {
+                  const href = getUrl(item.href, baseUrl);
+
+                  return (
+                    <MenuLink key={href} href={href} onClick={closeNav}>
+                      {item.label}
+                    </MenuLink>
+                  );
+                })}
               </MenuDropdwn>
             );
           }
 
+          const href = getUrl(entry.href, baseUrl);
+
           return (
-            <MenuLink key={entry.label} href={entry.href} onClick={closeNav}>
+            <MenuLink key={entry.label} href={href} onClick={closeNav}>
               {entry.label}
             </MenuLink>
           );
