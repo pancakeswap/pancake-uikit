@@ -7,6 +7,7 @@ export const baseColors = {
   primaryDark: "#0098A1",
   secondary: "#7645D9",
   success: "#31D0AA",
+  warning: "#FFB237",
 };
 
 export const brandColors = {
@@ -26,6 +27,7 @@ export const lightColors: Colors = {
   textDisabled: "#BDC2C4",
   textSubtle: "#8f80ba",
   borderColor: "#E9EAEB",
+  card: "#FFFFFF",
 };
 
 export const darkColors: Colors = {
@@ -42,4 +44,5 @@ export const darkColors: Colors = {
   textDisabled: "#666171",
   textSubtle: "#A28BD4",
   borderColor: "#524B63",
+  card: "#27262c",
 };
