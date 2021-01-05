@@ -8,10 +8,10 @@ it("renders correctly", () => {
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <div
-        class="sc-jSgupP rqDvT"
+        class="sc-eCssSg eWGkCV"
       >
         <div
-          class="sc-hKgILt fvJnpd"
+          class="sc-dlfnbm OPOyL"
         >
           <svg
             class="sc-bdfBwQ gzsyvQ"
@@ -26,10 +26,10 @@ it("renders correctly", () => {
           </svg>
         </div>
         <div
-          class="sc-eCssSg bjKTN"
+          class="sc-hKgILt lmuQou"
         >
           <div
-            class="sc-gsTCUz sc-dlfnbm jMaGVC krcOAW"
+            class="sc-gsTCUz cKNHek"
             color="text"
           >
             Alert title
