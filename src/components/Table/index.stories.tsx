@@ -1,5 +1,5 @@
-import React from 'react'
-import TableComponent from './Table'
+import React from "react";
+import TableComponent from "./Table";
 
 export default {
   title: "Components/Table",
@@ -9,6 +9,8 @@ export default {
 
 export const Default: React.FC = () => {
   return (
-    <TableComponent />
-  )
-}
+    <div style={{ width: "500px" }}>
+      <TableComponent />
+    </div>
+  );
+};

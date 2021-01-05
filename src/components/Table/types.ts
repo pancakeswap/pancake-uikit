@@ -1,13 +1,21 @@
 export type TableProps = {
-  data?: any[]
-  selectedFilters?: string
-  sortBy?: string
-  sortDir?: string
-  onSort?: (value: string) => void
-}
+  data?: TableDataTypes[];
+  selectedFilters?: string;
+  sortBy?: string;
+  sortDir?: string;
+  onSort?: (value: string) => void;
+};
 
 export type ColumnsDefTypes = {
-  id: number,
-  bold: string,
-  normal: string
+  id: number;
+  bold: string;
+  normal: string;
+};
+
+export type ScrollBarProps = {
+  ref: string;
+};
+
+export type TableDataTypes = {
+  poolImage: string,
 }

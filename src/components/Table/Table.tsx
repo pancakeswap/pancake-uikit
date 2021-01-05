@@ -1,25 +1,26 @@
-import React from 'react'
-import styled from 'styled-components'
-import { TableProps } from './types'
-import Cell from './Cell'
-import { columnsDef } from './const'
+import React, { useRef, useEffect } from "react";
+import styled from "styled-components";
+import { TableProps } from "./types";
+import Cell from "./Cell";
+import ScrollBar from "./ScrollBar";
+import { columnsDef } from "./const";
 
-export const Table = styled.table`
+export const StyledTable = styled.table`
   border-collapse: collapse;
-  width: 100%;
+  min-width: 800px;
   font-size: 0.9rem;
   overflow: hidden;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 0px 1px rgba(25, 19, 38, 0.15);
-  border-radius: 32px;
+  border-radius: 4px;
   text-align: center;
-`
+`;
 
 export const TableHead = styled.thead`
   & tr {
-    background-color: #EFF4F5;
+    background-color: #eff4f5;
     border-radius: 4px;
-    color: #8F80BA;
+    color: #8f80ba;
     font-weight: 700;
     text-transform: capitalize;
     cursor: pointer;
@@ -40,9 +41,9 @@ export const TableHead = styled.thead`
   }
 
   & .bold {
-    color: #7645D9;
+    color: #7645d9;
   }
-`
+`;
 
 export const TableBody = styled.tbody`
   & tr {
@@ -51,10 +52,6 @@ export const TableBody = styled.tbody`
     & th,
     td {
       padding: 12px 15px;
-
-      & .alert {
-        color: ${props => props?.theme?.colors?.alert}
-      }
     }
   }
 
@@ -66,37 +63,59 @@ export const TableBody = styled.tbody`
     transition: 0.3s;
     color: #457b9d;
   }
-`
+`;
 
-const TableComponent:React.FC<TableProps> = () => {
+export const TableWrapper = styled.div`
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
+`;
+
+export const Container = styled.div`
+  padding: 24px;
+  box-shadow: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 0px 1px rgba(25, 19, 38, 0.15);
+  border-radius: 32px;
+`;
+
+const TableComponent: React.FC<TableProps> = () => {
+  const tableEl = useRef<HTMLTableElement>(null);
+  const tableWrapperEl = useRef<HTMLDivElement>(null);
+  const scrollBarEl = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollBarEl.current) {
+      scrollBarEl.current.onscroll = (): void => {
+        if (tableWrapperEl.current && scrollBarEl.current)
+          tableWrapperEl.current.scrollLeft = scrollBarEl.current.scrollLeft;
+      };
+    }
+  }, []);
+
   return (
-    <Table>
-      <TableHead>
-          <tr>
-            {columnsDef.map((column, key) => (
-              <Cell
-                key={`head-${column.id}`}
-                keyId={`head-${key}`}
-                isHeader
-              >
-                <span className="bold">
-                  {column.bold}{' '}
-                </span>
-                {column.normal}
-              </Cell>
-            ))}
-          </tr>
-        </TableHead>
-    </Table>
-  )
-}
+    <Container>
+      <ScrollBar ref={scrollBarEl} />
+      <TableWrapper ref={tableWrapperEl}>
+        <StyledTable ref={tableEl}>
+          <TableHead>
+            <tr>
+              {columnsDef.map((column, key) => (
+                <Cell key={`head-${column.id}`} keyId={`head-${key}`} isHeader>
+                  <span className="bold">{column.bold} </span>
+                  {column.normal}
+                </Cell>
+              ))}
+            </tr>
+          </TableHead>
+        </StyledTable>
+      </TableWrapper>
+    </Container>
+  );
+};
 
-TableComponent.propTypes = {
+TableComponent.propTypes = {};
 
-}
+TableComponent.defaultProps = {};
 
-TableComponent.defaultProps = {
-
-}
-
-export default TableComponent
+export default TableComponent;
