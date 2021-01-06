@@ -50,7 +50,9 @@ const getPaginatedData = <T extends DataType>(rows: RowType<T>[], perPage: numbe
 const getColumnsByName = <T extends DataType>(columns: ColumnType<T>[]): ColumnByNamesType<T> => {
   const columnsByName: ColumnByNamesType<T> = {};
   columns.forEach((column) => {
-    const col: any = {
+    const col: ColumnType<T> = {
+      id: column.id,
+      name: column.name,
       label: column.label,
     };
 
@@ -65,21 +67,21 @@ const getColumnsByName = <T extends DataType>(columns: ColumnType<T>[]): ColumnB
 };
 
 const sortDataInOrder = <T extends DataType>(data: T[], columns: ColumnType<T>[]): T[] => {
-  return data.map((row: any) => {
-    const newRow: any = {};
+  return data.map((row: T) => {
+    const newRow: DataType = {};
     columns.forEach((column) => {
       if (!(column.name in row)) {
         throw new Error(`Invalid row data, ${column.name} not found`);
       }
       newRow[column.name] = row[column.name];
     });
-    return newRow;
+    return newRow as T;
   });
 };
 
-const makeRender = <T extends DataType>(
-  valueT: any,
-  render: (({ value, row }: { value: any; row: T }) => ReactNode) | undefined,
+const makeRender = <T extends DataType, K>(
+  valueT: K,
+  render: (({ value, row }: { value: K; row: T }) => ReactNode) | undefined,
   row: T
 ) => {
   return render ? () => render({ row, value: valueT }) : () => valueT;

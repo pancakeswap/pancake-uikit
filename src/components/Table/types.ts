@@ -1,11 +1,12 @@
+
 export type ColumnType<T> = {
   id: number;
   name: string;
   label?: string;
   hidden?: boolean;
   sort?: ((a: RowType<T>, b: RowType<T>) => number) | undefined;
-  render?: ({ value, row }: { value: any; row: T }) => React.ReactNode;
-  headerRender?: HeaderRenderType;
+  render?: ({ value, row }: RenderFunctionArgsType<T>) => React.ReactNode;
+  headerRender?: HeaderRenderType<T>;
 };
 
 export type ColumnStateType<T> = {
@@ -18,10 +19,10 @@ export type ColumnStateType<T> = {
     on: boolean;
     asc?: boolean;
   };
-  headerRender?: HeaderRenderType;
+  headerRender?: HeaderRenderType<T>;
 };
 
-export type HeaderRenderType = ({ label }: { label: any }) => React.ReactNode;
+export type HeaderRenderType<T> = ({ label }: { label: T }) => React.ReactNode;
 
 // this is the type saved as state and returned
 export type HeaderType<T> = {
@@ -37,6 +38,7 @@ export type HeaderType<T> = {
   render: () => React.ReactNode;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DataType = { [key: string]: any };
 
 export type ColumnByNamesType<T> = {
@@ -46,6 +48,7 @@ export type ColumnByNamesType<T> = {
 export type RenderFunctionType<T> = ({ value, row }: RenderFunctionArgsType<T>) => React.ReactNode | undefined;
 
 type RenderFunctionArgsType<T> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;
   row: T;
 };
@@ -61,6 +64,7 @@ export interface RowType<T extends DataType> {
 }
 
 export type CellType = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;
   render: () => React.ReactNode;
 };

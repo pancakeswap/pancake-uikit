@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { useTable, ColumnType } from "./index";
 import { data, columns } from "./example/const";
 import StyledTh from "./example/header";
 
 const Table = <T extends unknown>({ _columns, _data }: { _columns: ColumnType<T>[]; _data: T[] }) => {
-  const { headers, rows, toggleSort } = useTable(_columns, _data, {
+  const { headers, rows } = useTable(_columns, _data, {
     sortable: true,
   });
 
@@ -16,7 +16,6 @@ const Table = <T extends unknown>({ _columns, _data }: { _columns: ColumnType<T>
             <StyledTh
               key={`header-${header.id}`}
               data-testid={`column-${header.name}`}
-              onClick={() => toggleSort(header.name)}
             >
               {header.label}
 
@@ -38,7 +37,7 @@ const Table = <T extends unknown>({ _columns, _data }: { _columns: ColumnType<T>
   );
 };
 
-function TableComponent() {
+function TableComponent(): ReactNode {
   const memoColumns = useMemo(() => columns, []);
   const memoData = useMemo(() => data, []);
 

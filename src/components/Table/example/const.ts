@@ -8,7 +8,7 @@ export const columns = [
     id: 2,
     name: "pool",
     label: "POOL",
-    render: ({ value }: { value: string }) => value,
+    render: ({ value }: { value: string }): string => value,
   },
   {
     id: 3,
