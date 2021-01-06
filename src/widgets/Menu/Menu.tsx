@@ -66,6 +66,7 @@ const Menu: React.FC<NavProps> = ({
   cakePriceUsd,
   links,
   children,
+  isExchange = false,
 }) => {
   const [isPushed, setIsPushed] = useState(true);
   const [showMenu, setShowMenu] = useState(true);
@@ -94,7 +95,12 @@ const Menu: React.FC<NavProps> = ({
   return (
     <Wrapper>
       <StyledNav showMenu={showMenu}>
-        <Logo isPushed={isPushed} togglePush={() => setIsPushed((prevState: boolean) => !prevState)} isDark={isDark} />
+        <Logo
+          isPushed={isPushed}
+          togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
+          isDark={isDark}
+          isExchange={isExchange}
+        />
         <UserBlock account={account} login={login} logout={logout} />
       </StyledNav>
       <BodyWrapper>

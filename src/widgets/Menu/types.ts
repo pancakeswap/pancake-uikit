@@ -39,6 +39,7 @@ export interface PanelProps {
 
 export interface NavProps extends PanelProps {
   account?: string;
+  isExchange?: boolean;
   login: Login;
   logout: () => void;
 }
