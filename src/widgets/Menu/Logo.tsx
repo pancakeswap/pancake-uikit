@@ -10,7 +10,7 @@ interface Props {
   isPushed: boolean;
   isDark: boolean;
   togglePush: () => void;
-  isExchange: boolean;
+  href: string;
 }
 
 const StyledLink = styled(Link)`
@@ -31,7 +31,8 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, isExchange }) => {
+const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href }) => {
+  const isAbsoluteUrl = href.startsWith("http");
   const innerLogo = (
     <>
       <LogoIcon className="mobile-icon" />
@@ -48,12 +49,12 @@ const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, isExchange }) => 
           <HamburgerIcon width="24px" color="textSubtle" />
         )}
       </MenuButton>
-      {isExchange ? (
-        <StyledLink as="a" href="https://pancakeswap.finance" aria-label="Pancake home page">
+      {isAbsoluteUrl ? (
+        <StyledLink as="a" href={href} aria-label="Pancake home page">
           {innerLogo}
         </StyledLink>
       ) : (
-        <StyledLink to="/" aria-label="Pancake home page">
+        <StyledLink to={href} aria-label="Pancake home page">
           {innerLogo}
         </StyledLink>
       )}

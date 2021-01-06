@@ -66,7 +66,6 @@ const Menu: React.FC<NavProps> = ({
   cakePriceUsd,
   links,
   children,
-  isExchange = false,
 }) => {
   const [isPushed, setIsPushed] = useState(true);
   const [showMenu, setShowMenu] = useState(true);
@@ -92,6 +91,9 @@ const Menu: React.FC<NavProps> = ({
     };
   }, []);
 
+  // Find the home link if provided
+  const homeLink = links.find((link) => link.label === "Home");
+
   return (
     <Wrapper>
       <StyledNav showMenu={showMenu}>
@@ -99,7 +101,7 @@ const Menu: React.FC<NavProps> = ({
           isPushed={isPushed}
           togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
           isDark={isDark}
-          isExchange={isExchange}
+          href={homeLink?.href ?? "/"}
         />
         <UserBlock account={account} login={login} logout={logout} />
       </StyledNav>
