@@ -1,2 +1,3 @@
-export { default as Table } from "./Table";
-export type { TableProps, ColumnsDefTypes } from "./types";
+export * from "./hooks";
+export * from "./types";
+export * from "./utils";

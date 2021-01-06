@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { ScrollBarProps } from "./types";
 
 const Container = styled.div`
   height: 20px;
@@ -32,7 +31,7 @@ const ScrollPanel = styled.div`
   height: 20px;
 `;
 
-const ScrollBar = React.forwardRef<HTMLDivElement, ScrollBarProps>((props, ref) => {
+const ScrollBar = React.forwardRef<HTMLDivElement, any>((props, ref) => {
   return (
     <Container ref={ref}>
       <ScrollPanel />
