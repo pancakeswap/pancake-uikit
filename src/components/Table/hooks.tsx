@@ -9,7 +9,6 @@ import {
   UseTableOptionsType,
   RowType,
   HeaderType,
-  HeaderRenderType,
   ColumnStateType,
 } from "./types";
 import { byTextAscending, byTextDescending } from "./utils";
@@ -87,7 +86,8 @@ const makeRender = <T extends DataType, K>(
   return render ? () => render({ row, value: valueT }) : () => valueT;
 };
 
-const makeHeaderRender = (label: string, render: HeaderRenderType | undefined) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const makeHeaderRender = (label: string, render: any) => {
   return render ? () => render({ label }) : () => label;
 };
 export const createReducer = <T extends DataType>() => (
