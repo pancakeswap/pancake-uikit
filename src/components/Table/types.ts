@@ -64,8 +64,7 @@ export interface RowType<T extends DataType> {
 }
 
 export type CellType = {
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-  value: any;
+  value: React.ReactNode;
   render: () => React.ReactNode;
 };
 

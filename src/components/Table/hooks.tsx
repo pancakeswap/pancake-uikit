@@ -240,10 +240,10 @@ export const useTable = <T extends DataType>(
   }, [state.columns]);
 
   useEffect(() => {
-    if (options && options.filter) {
+    if (options?.filter) {
       dispatch({ type: "GLOBAL_FILTER", filter: options.filter });
     }
-  }, [options?.filter, options]);
+  }, [options?.filter]);
 
   return {
     headers: headers.filter((column) => !column.hidden),
