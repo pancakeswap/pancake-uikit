@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useTable, ColumnType } from "./index";
 import { data, columns } from "./example/const";
 import StyledTh from "./example/header";
@@ -37,14 +37,12 @@ const Table = <T extends unknown>({ _columns, _data }: { _columns: ColumnType<T>
   );
 };
 
-function TableComponent() {
+const TableComponent: React.FunctionComponent = () => {
   const memoColumns = useMemo(() => columns, []);
   const memoData = useMemo(() => data, []);
 
   return (
-    <>
-      <Table _columns={memoColumns} _data={memoData} />
-    </>
+    <Table _columns={memoColumns} _data={memoData} />
   );
 }
 
