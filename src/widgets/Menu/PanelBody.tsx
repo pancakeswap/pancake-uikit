@@ -17,7 +17,7 @@ const Container = styled.div`
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-bottom: 98px; // Because PanelFooter is in absolute position
+  height: 100%;
 `;
 
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
