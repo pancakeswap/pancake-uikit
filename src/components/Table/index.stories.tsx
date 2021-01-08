@@ -37,7 +37,7 @@ const Table = <T extends unknown>({ _columns, _data }: { _columns: ColumnType<T>
   );
 };
 
-function TableComponent(): ReactNode {
+function TableComponent() {
   const memoColumns = useMemo(() => columns, []);
   const memoData = useMemo(() => data, []);
 
