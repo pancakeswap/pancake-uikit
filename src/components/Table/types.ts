@@ -6,7 +6,7 @@ export type ColumnType<T extends DataType> = {
   hidden?: boolean;
   sort?: ((a: RowType<T>, b: RowType<T>) => number) | undefined;
   render?: ({ value, row }: RenderFunctionArgsType<T>) => React.ReactNode;
-  headerRender?: HeaderRenderType<T>;
+  headerRender?: HeaderRenderType<string>;
 };
 
 export type ColumnStateType<T extends DataType> = {
@@ -19,7 +19,7 @@ export type ColumnStateType<T extends DataType> = {
     on: boolean;
     asc?: boolean;
   };
-  headerRender?: HeaderRenderType<T>;
+  headerRender?: HeaderRenderType<string>;
 };
 
 export type HeaderRenderType<T> = ({ label }: { label: T }) => React.ReactNode;
@@ -48,7 +48,7 @@ export type RenderFunctionType<T> = ({ value, row }: RenderFunctionArgsType<T>) 
 
 type RenderFunctionArgsType<T> = {
   value: React.ReactNode;
-  row: T;
+  row?: T;
 };
 
 export type ColumnByNameType<T extends DataType> = Omit<Required<ColumnType<T>>, "name" | "sort">;
