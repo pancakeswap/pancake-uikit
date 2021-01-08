@@ -12,7 +12,7 @@ type MediaQueries = {
 /**
  * Can't use the media queries from "base.mediaQueries" because of how matchMedia works
  * In order for the listener to trigger we need have have the media query with a range, e.g.
- * screen and (min-width: 370px) and (max-width: 576px)
+ * (min-width: 370px) and (max-width: 576px)
  * @see https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList
  */
 const mediaQueries: MediaQueries = (() => {
@@ -21,7 +21,7 @@ const mediaQueries: MediaQueries = (() => {
   return Object.keys(breakpointMap).reduce((accum, size, index) => {
     // Largest size is just a min-width of second highest max-width
     if (index === Object.keys(breakpointMap).length - 1) {
-      return { ...accum, [size]: `screen and (min-width: ${prevMinWidth}px)` };
+      return { ...accum, [size]: `(min-width: ${prevMinWidth}px)` };
     }
 
     const minWidth = prevMinWidth;
@@ -30,15 +30,18 @@ const mediaQueries: MediaQueries = (() => {
     // Min width for next iteration
     prevMinWidth = breakpoint + 1;
 
-    return { ...accum, [size]: `screen and (min-width: ${minWidth}px) and (max-width: ${breakpoint}px)` };
+    return { ...accum, [size]: `(min-width: ${minWidth}px) and (max-width: ${breakpoint}px)` };
   }, {});
 })();
+
+const getKey = (size: string) => `is${size.charAt(0).toUpperCase()}${size.slice(1)}`;
 
 const useMatchBreakpoints = (): State => {
   const [state, setState] = useState<State>(() => {
     return Object.keys(mediaQueries).reduce((accum, size) => {
+      const key = getKey(size);
       const mql = window.matchMedia(mediaQueries[size]);
-      return { ...accum, [size]: mql.matches };
+      return { ...accum, [key]: mql.matches };
     }, {});
   });
 
@@ -48,9 +51,10 @@ const useMatchBreakpoints = (): State => {
       const mql = window.matchMedia(mediaQueries[size]);
 
       const handler = (matchMediaQuery: MediaQueryListEvent) => {
+        const key = getKey(size);
         setState((prevState) => ({
           ...prevState,
-          [size]: matchMediaQuery.matches,
+          [key]: matchMediaQuery.matches,
         }));
       };
 
