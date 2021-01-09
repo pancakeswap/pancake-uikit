@@ -37,6 +37,11 @@ const connectors: Config[] = [
     icon: BinanceChain,
     connectorId: "bsc",
   },
+    {
+    title: "SafePal Wallet",
+    icon: SafePalWallet,
+    connectorId: "injected",
+  },
 ];
 
 export default connectors;
