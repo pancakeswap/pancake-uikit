@@ -4,6 +4,7 @@ import TokenPocket from "./icons/TokenPocket";
 import TrustWallet from "./icons/TrustWallet";
 import WalletConnect from "./icons/WalletConnect";
 import BinanceChain from "./icons/BinanceChain";
+import SafePalWallet from "./icons/SafePalWallet";
 import { Config } from "./types";
 
 const connectors: Config[] = [
