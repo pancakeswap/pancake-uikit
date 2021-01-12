@@ -4,5 +4,5 @@ export interface TextProps extends SpaceProps {
   color?: string;
   fontSize?: string;
   bold?: boolean;
-  textTransform?: string;
+  textTransform?: "uppercase" | "lowercase" | "capitalize";
 }
