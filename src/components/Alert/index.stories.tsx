@@ -33,7 +33,9 @@ export const Default: React.FC = () => {
   );
 };
 
-const handleClick = () => console.log("click");
+const handleClick = () => {
+  return true;
+};
 
 export const WithHandler: React.FC = () => {
   return (
