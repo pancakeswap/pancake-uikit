@@ -70,7 +70,7 @@ const StyledAlert = styled(Flex)<{ hasDescription: boolean }>`
   align-items: ${({ hasDescription }) => (hasDescription ? "stretch" : "center")};
   background-color: ${({ theme }) => theme.alert.background};
   border-radius: 16px;
-  box-shadow: ${({ theme }) => theme.shadows.level1};
+  box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05);
 `;
 
 const Alert: React.FC<AlertProps> = ({ title, description, variant, onClick }) => {
