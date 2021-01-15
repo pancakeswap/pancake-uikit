@@ -50,20 +50,20 @@ const IconLabel = styled.div<ThemedIconLabel>`
   border-radius: 16px 0 0 16px;
   color: ${({ theme }) => theme.alert.background};
   display: flex;
+  flex: none;
   justify-content: center;
-  min-height: 48px;
-  padding: 8px 0;
-  width: 40px;
+  min-height: 56px;
+  padding: 12px;
 `;
 
 const Details = styled.div`
   flex: 1;
-  padding: 8px;
+  padding: 12px;
 `;
 
 const CloseHandler = styled.div`
   border-radius: 0 16px 16px 0;
-  padding: 8px 8px 8px 0;
+  padding: 12px 12px 12px 0;
 `;
 
 const StyledAlert = styled(Flex)<{ hasDescription: boolean }>`
