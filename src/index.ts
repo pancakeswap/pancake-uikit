@@ -15,10 +15,9 @@ export * from "./components/Link";
 export * from "./components/Progress";
 export * from "./components/Skeleton";
 export * from "./components/Toggle";
-
+export * from "./components/Table";
 // Hooks
 export { default as useParticleBurst } from "./hooks";
-
 // Widgets
 export { default as Footer } from "./widgets/Footer";
 export * from "./widgets/Modal";
