@@ -10,7 +10,7 @@ export default {
   argTypes: {},
 };
 
-export const Default = () => {
+export const Default: React.FC = () => {
   const [alerts, setAlerts] = useState([]);
 
   const handleClick = (description = "") => {
