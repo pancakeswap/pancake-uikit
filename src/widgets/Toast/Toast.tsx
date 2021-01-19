@@ -29,13 +29,21 @@ const Toast: React.FC<ToastProps> = ({ alert, onRemove, style, ttl, ...props }) 
   };
 
   const handleMouseLeave = () => {
-    timer.current = setTimeout(() => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+
+    timer.current = window.setTimeout(() => {
       handleRemove();
     }, ttl);
   };
 
   useEffect(() => {
-    timer.current = setTimeout(() => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+
+    timer.current = window.setTimeout(() => {
       handleRemove();
     }, ttl);
 
