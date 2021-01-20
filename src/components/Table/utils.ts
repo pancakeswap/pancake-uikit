@@ -1,4 +1,6 @@
-export const byTextAscending = <T>(getTextProperty: (object: T) => string) => (objectA: T, objectB: T): number => {
+export const byTextAscending = <T extends {}>(
+  getTextProperty: (object: T) => String
+) => (objectA: T, objectB: T) => {
   const upperA = getTextProperty(objectA).toUpperCase();
   const upperB = getTextProperty(objectB).toUpperCase();
   if (upperA < upperB) {
@@ -10,7 +12,9 @@ export const byTextAscending = <T>(getTextProperty: (object: T) => string) => (o
   return 0;
 };
 
-export const byTextDescending = <T>(getTextProperty: (object: T) => string) => (objectA: T, objectB: T): number => {
+export const byTextDescending = <T extends {}>(
+  getTextProperty: (object: T) => String
+) => (objectA: T, objectB: T) => {
   const upperA = getTextProperty(objectA).toUpperCase();
   const upperB = getTextProperty(objectB).toUpperCase();
   if (upperA > upperB) {

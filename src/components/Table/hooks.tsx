@@ -1,4 +1,5 @@
-import { useMemo, useReducer, useEffect, ReactNode } from "react";
+import { useMemo, useReducer, useEffect, ReactNode, useCallback } from 'react';
+
 import {
   ColumnByNamesType,
   ColumnType,
@@ -9,93 +10,17 @@ import {
   UseTableOptionsType,
   RowType,
   HeaderType,
-  ColumnStateType,
   HeaderRenderType,
-} from "./types";
-import { byTextAscending, byTextDescending } from "./utils";
+  ColumnStateType,
+} from './types';
+import { byTextAscending, byTextDescending } from './utils';
 
-const sortByColumn = <T extends DataType>(
-  data: RowType<T>[],
-  sortColumn: string,
-  columns: ColumnStateType<T>[]
-): RowType<T>[] => {
-  let isAscending = null;
-  let sortedRows: RowType<T>[] = [...data];
-
-  columns.forEach((column) => {
-    // if the row was found
-    if (sortColumn === column.name) {
-      isAscending = column.sorted.asc;
-
-      if (column.sort) {
-        sortedRows = isAscending ? data.sort(column.sort) : data.sort(column.sort).reverse();
-        // default to sort by string
-      } else {
-        sortedRows = isAscending
-          ? data.sort(byTextAscending((object) => object.original[sortColumn]))
-          : data.sort(byTextDescending((object) => object.original[sortColumn]));
-      }
-    }
-  });
-
-  return sortedRows;
-};
-
-const getPaginatedData = <T extends DataType>(rows: RowType<T>[], perPage: number, page: number) => {
-  const start = (page - 1) * perPage;
-  const end = start + perPage;
-  return rows.slice(start, end);
-};
-
-const getColumnsByName = <T extends DataType>(columns: ColumnType<T>[]): ColumnByNamesType<T> => {
-  const columnsByName: ColumnByNamesType<T> = {};
-  columns.forEach((column) => {
-    const col: ColumnType<T> = {
-      id: column.id,
-      name: column.name,
-      label: column.label,
-    };
-
-    if (column.render) {
-      col.render = column.render;
-    }
-    col.hidden = column.hidden;
-    columnsByName[column.name] = col;
-  });
-
-  return columnsByName;
-};
-
-const sortDataInOrder = <T extends DataType>(data: T[], columns: ColumnType<T>[]): T[] => {
-  return data.map((row: T) => {
-    const newRow: DataType = {};
-    columns.forEach((column) => {
-      if (!(column.name in row)) {
-        throw new Error(`Invalid row data, ${column.name} not found`);
-      }
-      newRow[column.name] = row[column.name];
-    });
-    return newRow as T;
-  });
-};
-
-const makeRender = <T extends DataType, K>(
-  valueT: K,
-  render: (({ value, row }: { value: K; row: T }) => ReactNode) | undefined,
-  row: T
-) => {
-  return render ? () => render({ row, value: valueT }) : () => valueT;
-};
-
-const makeHeaderRender = (label: string, render?: HeaderRenderType<string>) => {
-  return render ? () => render({ label }) : () => label;
-};
-export const createReducer = <T extends DataType>() => (
+const createReducer = <T extends DataType>() => (
   state: TableState<T>,
   action: TableAction<T>
 ): TableState<T> => {
   switch (action.type) {
-    case "SET_ROWS": {
+    case 'SET_ROWS':
       let rows = [...action.data];
       // preserve sorting if a sort is already enabled when data changes
       if (state.sortColumn) {
@@ -103,11 +28,19 @@ export const createReducer = <T extends DataType>() => (
       }
 
       if (state.paginationEnabled === true) {
-        rows = getPaginatedData(rows, state.pagination.perPage, state.pagination.page);
+        rows = getPaginatedData(
+          rows,
+          state.pagination.perPage,
+          state.pagination.page
+        );
       }
 
       if (state.paginationEnabled === true) {
-        rows = getPaginatedData(rows, state.pagination.perPage, state.pagination.page);
+        rows = getPaginatedData(
+          rows,
+          state.pagination.perPage,
+          state.pagination.page
+        );
       }
 
       return {
@@ -115,28 +48,155 @@ export const createReducer = <T extends DataType>() => (
         rows,
         originalRows: action.data,
       };
-    }
 
-    case "GLOBAL_FILTER": {
-      const filteredRows = action.filter(state.originalRows);
-      const selectedRowsById: { [key: number]: boolean } = {};
-      state.selectedRows.forEach((row) => {
-        selectedRowsById[row.id] = !!row.selected;
+    case 'NEXT_PAGE':
+      const nextPage = state.pagination.page + 1;
+      return {
+        ...state,
+        rows: getPaginatedData(
+          state.originalRows,
+          state.pagination.perPage,
+          nextPage
+        ),
+        pagination: {
+          ...state.pagination,
+          page: nextPage,
+          canNext:
+            nextPage * state.pagination.perPage < state.originalRows.length,
+          canPrev: nextPage !== 1,
+        },
+      };
+    case 'PREV_PAGE':
+      const prevPage =
+        state.pagination.page === 1 ? 1 : state.pagination.page - 1;
+
+      return {
+        ...state,
+        rows: getPaginatedData(
+          state.originalRows,
+          state.pagination.perPage,
+          prevPage
+        ),
+        pagination: {
+          ...state.pagination,
+          page: prevPage,
+          canNext:
+            prevPage * state.pagination.perPage < state.originalRows.length,
+          canPrev: prevPage !== 1,
+        },
+      };
+    case 'TOGGLE_SORT':
+      if (!(action.columnName in state.columnsByName)) {
+        throw new Error(`Invalid column, ${action.columnName} not found`);
+      }
+
+      let isAscending = null;
+
+      let sortedRows: RowType<T>[] = [];
+
+      // loop through all columns and set the sort parameter to off unless
+      // it's the specified column (only one column at a time for )
+      const columnCopy = state.columns.map(column => {
+        // if the row was found
+        if (action.columnName === column.name) {
+          if (action.isAscOverride !== undefined) {
+            // force the sort order
+            isAscending = action.isAscOverride;
+          } else {
+            // if it's undefined, start by setting to ascending, otherwise toggle
+            isAscending =
+              column.sorted.asc === undefined ? true : !column.sorted.asc;
+          }
+
+          if (column.sort) {
+            sortedRows = isAscending
+              ? state.rows.sort(column.sort)
+              : state.rows.sort(column.sort).reverse();
+            // default to sort by string
+          } else {
+            sortedRows = isAscending
+              ? state.rows.sort(
+                  byTextAscending(object => object.original[action.columnName])
+                )
+              : state.rows.sort(
+                  byTextDescending(object => object.original[action.columnName])
+                );
+          }
+          return {
+            ...column,
+            sorted: {
+              on: true,
+              asc: isAscending,
+            },
+          };
+        }
+        // set sorting to false for all other columns
+        return {
+          ...column,
+          sorted: {
+            on: false,
+            asc: false,
+          },
+        };
       });
 
       return {
         ...state,
-        rows: filteredRows.map((row) => {
-          return selectedRowsById[row.id] ? { ...row, selected: selectedRowsById[row.id] } : { ...row };
+        columns: columnCopy,
+        rows: sortedRows,
+        sortColumn: action.columnName,
+        columnsByName: getColumnsByName(columnCopy),
+      };
+    case 'GLOBAL_FILTER':
+      const filteredRows = action.filter(state.originalRows);
+      const selectedRowsById: { [key: number]: boolean } = {};
+      state.selectedRows.map(row => {
+        selectedRowsById[row.id] = row.selected ? true : false;
+      });
+
+      return {
+        ...state,
+        rows: filteredRows.map(row => {
+          return selectedRowsById[row.id]
+            ? { ...row, selected: selectedRowsById[row.id] }
+            : { ...row };
         }),
         filterOn: true,
       };
-    }
-    case "SEARCH_STRING": {
+    case 'SELECT_ROW':
+      const stateCopy = { ...state };
+
+      stateCopy.rows = stateCopy.rows.map(row => {
+        const newRow = { ...row };
+        if (newRow.id === action.rowId) {
+          newRow.selected = !newRow.selected;
+        }
+        return newRow;
+      });
+
+      stateCopy.originalRows = stateCopy.originalRows.map(row => {
+        const newRow = { ...row };
+        if (newRow.id === action.rowId) {
+          newRow.selected = !newRow.selected;
+        }
+        return newRow;
+      });
+
+      stateCopy.selectedRows = stateCopy.originalRows.filter(
+        row => row.selected === true
+      );
+
+      stateCopy.toggleAllState =
+        stateCopy.selectedRows.length === stateCopy.rows.length
+          ? (stateCopy.toggleAllState = true)
+          : (stateCopy.toggleAllState = false);
+
+      return stateCopy;
+    case 'SEARCH_STRING':
       const stateCopySearch = { ...state };
-      stateCopySearch.rows = stateCopySearch.originalRows.filter((row) => {
+      stateCopySearch.rows = stateCopySearch.originalRows.filter(row => {
         return (
-          row.cells.filter((cell) => {
+          row.cells.filter(cell => {
             if (cell.value.includes(action.searchString)) {
               return true;
             }
@@ -145,9 +205,39 @@ export const createReducer = <T extends DataType>() => (
         );
       });
       return stateCopySearch;
-    }
+    case 'TOGGLE_ALL':
+      const stateCopyToggle = { ...state };
+      const rowIds: { [key: number]: boolean } = {};
+
+      if (state.selectedRows.length < state.rows.length) {
+        stateCopyToggle.rows = stateCopyToggle.rows.map(row => {
+          rowIds[row.id] = true;
+          return { ...row, selected: true };
+        });
+
+        stateCopyToggle.toggleAllState = true;
+      } else {
+        stateCopyToggle.rows = stateCopyToggle.rows.map(row => {
+          rowIds[row.id] = false;
+
+          return { ...row, selected: false };
+        });
+        stateCopyToggle.toggleAllState = false;
+      }
+
+      stateCopyToggle.originalRows = stateCopyToggle.originalRows.map(row => {
+        return row.id in rowIds
+          ? { ...row, selected: rowIds[row.id] }
+          : { ...row };
+      });
+
+      stateCopyToggle.selectedRows = stateCopyToggle.originalRows.filter(
+        row => row.selected
+      );
+
+      return stateCopyToggle;
     default:
-      throw new Error("Invalid reducer action");
+      throw new Error('Invalid reducer action');
   }
 };
 
@@ -158,7 +248,7 @@ export const useTable = <T extends DataType>(
 ): UseTableReturnType<T> => {
   const columnsWithSorting: ColumnStateType<T>[] = useMemo(
     () =>
-      columns.map((column) => {
+      columns.map(column => {
         return {
           ...column,
           label: column.label ? column.label : column.name,
@@ -171,7 +261,9 @@ export const useTable = <T extends DataType>(
       }),
     [columns]
   );
-  const columnsByName = useMemo(() => getColumnsByName(columnsWithSorting), [columnsWithSorting]);
+  const columnsByName = useMemo(() => getColumnsByName(columnsWithSorting), [
+    columnsWithSorting,
+  ]);
 
   const tableData: RowType<T>[] = useMemo(() => {
     const sortedData = sortDataInOrder(data, columnsWithSorting);
@@ -187,11 +279,11 @@ export const useTable = <T extends DataType>(
             return {
               hidden: columnsByName[column].hidden,
               field: column,
-              value,
+              value: value,
               render: makeRender(value, columnsByName[column].render, row),
             };
           })
-          .filter((cell) => !cell.hidden),
+          .filter(cell => !cell.hidden),
       };
     });
     return newData;
@@ -201,7 +293,7 @@ export const useTable = <T extends DataType>(
 
   const [state, dispatch] = useReducer(reducer, {
     columns: columnsWithSorting,
-    columnsByName,
+    columnsByName: columnsByName,
     originalRows: tableData,
     rows: tableData,
     selectedRows: [],
@@ -214,22 +306,26 @@ export const useTable = <T extends DataType>(
       perPage: 10,
       canNext: true,
       canPrev: false,
-      nextPage: () => {
-        // nextPage feature
-      },
-      prevPage: () => {
-        // prevPage feature
-      },
+      nextPage: () => {},
+      prevPage: () => {},
     },
   });
 
+  state.pagination.nextPage = useCallback(() => {
+    dispatch({ type: 'NEXT_PAGE' });
+  }, [dispatch]);
+  state.pagination.prevPage = useCallback(
+    () => dispatch({ type: 'PREV_PAGE' }),
+    [dispatch]
+  );
+
   useEffect(() => {
-    dispatch({ type: "SET_ROWS", data: tableData });
+    dispatch({ type: 'SET_ROWS', data: tableData });
   }, [tableData]);
 
   const headers: HeaderType<T>[] = useMemo(() => {
     return [
-      ...state.columns.map((column) => {
+      ...state.columns.map(column => {
         const label = column.label ? column.label : column.name;
         return {
           ...column,
@@ -240,19 +336,113 @@ export const useTable = <T extends DataType>(
   }, [state.columns]);
 
   useEffect(() => {
-    if (options?.filter) {
-      dispatch({ type: "GLOBAL_FILTER", filter: options.filter });
+    if (options && options.filter) {
+      dispatch({ type: 'GLOBAL_FILTER', filter: options.filter });
     }
   }, [options?.filter]);
 
   return {
-    headers: headers.filter((column) => !column.hidden),
+    headers: headers.filter(column => !column.hidden),
     rows: state.rows,
     originalRows: state.originalRows,
     selectedRows: state.selectedRows,
     dispatch,
-    setSearchString: (searchString: string) => dispatch({ type: "SEARCH_STRING", searchString }),
+    selectRow: (rowId: number) => dispatch({ type: 'SELECT_ROW', rowId }),
+    toggleAll: () => dispatch({ type: 'TOGGLE_ALL' }),
+    toggleSort: (columnName: string, isAscOverride?: boolean) =>
+      dispatch({ type: 'TOGGLE_SORT', columnName, isAscOverride }),
+    setSearchString: (searchString: string) =>
+      dispatch({ type: 'SEARCH_STRING', searchString }),
     pagination: state.pagination,
     toggleAllState: state.toggleAllState,
   };
+};
+
+const makeRender = <T extends DataType>(
+  value: any,
+  render: (({ value, row }: { value: any; row: T }) => ReactNode) | undefined,
+  row: T
+) => {
+  return render ? () => render({ row, value }) : () => value;
+};
+
+const makeHeaderRender = (
+  label: string,
+  render: HeaderRenderType | undefined
+) => {
+  return render ? () => render({ label }) : () => label;
+};
+
+const sortDataInOrder = <T extends DataType>(
+  data: T[],
+  columns: ColumnType<T>[]
+): T[] => {
+  return data.map((row: any) => {
+    const newRow: any = {};
+    columns.forEach(column => {
+      if (!(column.name in row)) {
+        throw new Error(`Invalid row data, ${column.name} not found`);
+      }
+      newRow[column.name] = row[column.name];
+    });
+    return newRow;
+  });
+};
+
+const sortByColumn = <T extends DataType>(
+  data: RowType<T>[],
+  sortColumn: string,
+  columns: ColumnStateType<T>[]
+): RowType<T>[] => {
+  let isAscending = null;
+  let sortedRows: RowType<T>[] = [...data];
+
+  columns.map(column => {
+    // if the row was found
+    if (sortColumn === column.name) {
+      isAscending = column.sorted.asc;
+
+      if (column.sort) {
+        sortedRows = isAscending
+          ? data.sort(column.sort)
+          : data.sort(column.sort).reverse();
+        // default to sort by string
+      } else {
+        sortedRows = isAscending
+          ? data.sort(byTextAscending(object => object.original[sortColumn]))
+          : data.sort(byTextDescending(object => object.original[sortColumn]));
+      }
+    }
+  });
+
+  return sortedRows;
+};
+
+const getColumnsByName = <T extends DataType>(
+  columns: ColumnType<T>[]
+): ColumnByNamesType<T> => {
+  const columnsByName: ColumnByNamesType<T> = {};
+  columns.forEach(column => {
+    const col: any = {
+      label: column.label,
+    };
+
+    if (column.render) {
+      col['render'] = column.render;
+    }
+    col['hidden'] = column.hidden;
+    columnsByName[column.name] = col;
+  });
+
+  return columnsByName;
+};
+
+const getPaginatedData = <T extends DataType>(
+  rows: RowType<T>[],
+  perPage: number,
+  page: number
+) => {
+  const start = (page - 1) * perPage;
+  const end = start + perPage;
+  return rows.slice(start, end);
 };
