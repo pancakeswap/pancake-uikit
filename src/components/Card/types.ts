@@ -1,4 +1,4 @@
-import { HTMLAttributes, DetailedHTMLProps } from "react";
+import { HTMLAttributes } from "react";
 import { SpaceProps } from "styled-system";
 import { Colors } from "../../theme/types";
 
@@ -15,7 +15,7 @@ export type CardTheme = {
   boxShadowWarning: string;
 };
 
-export interface CardProps extends SpaceProps, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface CardProps extends SpaceProps, HTMLAttributes<HTMLDivElement> {
   isActive?: boolean;
   isSuccess?: boolean;
   isWarning?: boolean;
