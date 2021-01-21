@@ -55,7 +55,7 @@ it("renders correctly", () => {
           >
             <button
               aria-label="Toggle menu"
-              class="sc-hKgILt hpJmyM sc-eCssSg hYyuPy"
+              class="sc-hKgILt cgarvn sc-eCssSg hYyuPy"
             >
               <svg
                 class="sc-gsTCUz iXAcHm"
@@ -186,7 +186,7 @@ it("renders correctly", () => {
           </div>
           <div>
             <button
-              class="sc-hKgILt kXloqA"
+              class="sc-hKgILt lePvmD"
             >
               0xbd...c980
             </button>
@@ -516,7 +516,7 @@ it("renders correctly", () => {
               class="sc-fFubgz kaEsai"
             >
               <button
-                class="sc-hKgILt iVpGiw sc-fodVxV isuojT"
+                class="sc-hKgILt bDNWQP sc-fodVxV isuojT"
               >
                 <svg
                   class="sc-gsTCUz lixgFL"

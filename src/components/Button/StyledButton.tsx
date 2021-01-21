@@ -6,6 +6,35 @@ type ThemedProps = {
   theme: DefaultTheme;
 } & ButtonProps;
 
+const getDisabledStyles = ({ isLoading, theme }: ThemedProps) => {
+  if (isLoading === true) {
+    return `
+      cursor: not-allowed
+    `;
+  }
+
+  return `
+    &:disabled,
+    &.button--disabled {
+      background-color: ${theme.colors.backgroundDisabled};
+      border-color: ${theme.colors.backgroundDisabled};
+      box-shadow: none;
+      color: ${theme.colors.textDisabled};
+      cursor: not-allowed;
+    }
+  `;
+};
+
+const removePointerEvents = ({ isDisabled, as }: ThemedProps) => {
+  if (isDisabled && as !== "button") {
+    return `
+      pointer-events: none;
+    `;
+  }
+
+  return "";
+};
+
 const getButtonVariantProp = (prop: keyof ButtonThemeVariant) => ({
   theme,
   variant = variants.PRIMARY,
@@ -34,8 +63,9 @@ const StyledButton = styled.button<ButtonProps>`
   outline: 0;
   padding: ${({ size }) => (size === "sm" ? "0 16px" : "0 24px")};
   transition: background-color 0.2s;
+  opacity: ${({ isLoading }) => (isLoading ? 0.5 : 1)};
 
-  &:hover:not(:disabled):not(:active) {
+  &:hover:not(:disabled):not(.button--disabled):not(:active) {
     background-color: ${getButtonVariantProp("backgroundHover")};
     border-color: ${getButtonVariantProp("borderColorHover")};
   }
@@ -49,13 +79,8 @@ const StyledButton = styled.button<ButtonProps>`
     box-shadow: ${getButtonVariantProp("boxShadowActive")};
   }
 
-  &:disabled {
-    background-color: ${({ theme }) => theme.colors.backgroundDisabled};
-    border-color: ${({ theme }) => theme.colors.backgroundDisabled};
-    box-shadow: none;
-    color: ${({ theme }) => theme.colors.textDisabled};
-    cursor: not-allowed;
-  }
+  ${getDisabledStyles}
+  ${removePointerEvents}
   ${space}
 `;
 

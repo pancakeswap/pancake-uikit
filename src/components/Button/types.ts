@@ -1,5 +1,4 @@
-import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
-import { Link, LinkProps } from "react-router-dom";
+import { ElementType, ReactNode } from "react";
 import { SpaceProps } from "styled-system";
 
 export const sizes = {
@@ -20,19 +19,28 @@ export const variants = {
 export type Sizes = typeof sizes[keyof typeof sizes];
 export type Variants = typeof variants[keyof typeof variants];
 
-type ButtonTypes = ButtonHTMLAttributes<HTMLButtonElement> | AnchorHTMLAttributes<HTMLAnchorElement> | LinkProps;
+/* eslint-disable @typescript-eslint/ban-types */
+type MergeElementProps<T extends React.ElementType, P extends object = {}> = Omit<
+  React.ComponentPropsWithRef<T>,
+  keyof P
+> &
+  P;
 
-export type ButtonProps = {
+export interface ButtonBaseProps extends SpaceProps {
   variant?: Variants;
   size?: Sizes;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
   fullWidth?: boolean;
-  as?: "a" | "button" | typeof Link;
   href?: string;
   external?: boolean;
-} & ButtonTypes &
-  SpaceProps;
+  isLoading?: boolean;
+  isDisabled?: boolean;
+}
+
+export type ButtonProps<P extends ElementType = "button"> = {
+  as?: P;
+} & MergeElementProps<P, ButtonBaseProps>;
 
 export type ButtonThemeVariant = {
   background: string;
