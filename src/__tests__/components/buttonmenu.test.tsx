@@ -18,12 +18,12 @@ it("renders correctly", () => {
         class="sc-bdfBwQ ixBoaC"
       >
         <button
-          class="sc-gsTCUz ghXEjt"
+          class="sc-gsTCUz ihLwNu"
         >
           Item 1
         </button>
         <button
-          class="sc-gsTCUz bsQSlZ sc-dlfnbm cPEMfq"
+          class="sc-gsTCUz bdckoq sc-dlfnbm cPEMfq"
         >
           Item 2
         </button>
