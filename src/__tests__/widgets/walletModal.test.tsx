@@ -25,7 +25,7 @@ it("renders ConnectModal correctly", () => {
             class="sc-eCssSg dHcAeg sc-fubCfw cfMWLW"
           >
             <svg
-              class="sc-dlfnbm iELGUn"
+              class="sc-dlfnbm kPlhyw"
               color="primary"
               viewBox="0 0 24 24"
               width="20px"
@@ -52,7 +52,7 @@ it("renders ConnectModal correctly", () => {
               Metamask
             </div>
             <svg
-              class="sc-dlfnbm kpevJg"
+              class="sc-dlfnbm cqTLJf"
               color="text"
               viewBox="0 0 96 96"
               width="32px"
@@ -194,7 +194,7 @@ it("renders ConnectModal correctly", () => {
               TrustWallet
             </div>
             <svg
-              class="sc-dlfnbm kpevJg"
+              class="sc-dlfnbm cqTLJf"
               color="text"
               viewBox="0 0 96 96"
               width="32px"
@@ -237,7 +237,7 @@ it("renders ConnectModal correctly", () => {
               MathWallet
             </div>
             <svg
-              class="sc-dlfnbm kpevJg"
+              class="sc-dlfnbm cqTLJf"
               color="text"
               viewBox="0 0 96 96"
               width="32px"
@@ -269,7 +269,7 @@ it("renders ConnectModal correctly", () => {
               TokenPocket
             </div>
             <svg
-              class="sc-dlfnbm kpevJg"
+              class="sc-dlfnbm cqTLJf"
               color="text"
               viewBox="0 0 96 96"
               width="32px"
@@ -303,7 +303,7 @@ it("renders ConnectModal correctly", () => {
               WalletConnect
             </div>
             <svg
-              class="sc-dlfnbm kpevJg"
+              class="sc-dlfnbm cqTLJf"
               color="text"
               viewBox="0 0 96 96"
               width="32px"
@@ -331,7 +331,7 @@ it("renders ConnectModal correctly", () => {
               Binance Chain Wallet
             </div>
             <svg
-              class="sc-dlfnbm kpevJg"
+              class="sc-dlfnbm cqTLJf"
               color="text"
               viewBox="0 0 32 32"
               width="32px"
@@ -391,7 +391,7 @@ it("renders ConnectModal correctly", () => {
             target="_blank"
           >
             <svg
-              class="sc-dlfnbm hmGsXv"
+              class="sc-dlfnbm gYbuYc"
               color="primary"
               viewBox="0 0 20 20"
               width="20px"
@@ -430,7 +430,7 @@ it("renders AccountModal correctly", () => {
             class="sc-eCssSg dHcAeg sc-fubCfw cfMWLW"
           >
             <svg
-              class="sc-dlfnbm iELGUn"
+              class="sc-dlfnbm kPlhyw"
               color="primary"
               viewBox="0 0 24 24"
               width="20px"
@@ -460,7 +460,7 @@ it("renders AccountModal correctly", () => {
             target="blank"
           >
             <svg
-              class="sc-dlfnbm fQuNzN"
+              class="sc-dlfnbm jwtULe"
               color="primary"
               viewBox="0 0 24 24"
               width="20px"

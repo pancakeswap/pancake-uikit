@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BrowserRouter, Link } from "react-router-dom";
 import capitalize from "lodash/capitalize";
 import Flex from "../Flex/Flex";
-import { LogoIcon, AddIcon } from "../Svg";
+import { LogoIcon, AddIcon, AutoRenewIcon } from "../Svg";
 import Button from "./Button";
 import IconButton from "./IconButton";
 import { variants } from "./types";
@@ -50,7 +50,7 @@ export const Variants: React.FC = () => {
         <Button as={Link} to="/router-link" variant="secondary">
           As an React Router link
         </Button>
-        <Button as="a" href="https://pancakeswap.finance" isDisabled>
+        <Button as="a" href="https://pancakeswap.finance" disabled>
           As an anchor (disabled)
         </Button>
       </Row>
@@ -58,7 +58,9 @@ export const Variants: React.FC = () => {
         <Button fullWidth>Full size</Button>
       </Row>
       <Row>
-        <Button isLoading>Approving</Button>
+        <Button isLoading endIcon={<AutoRenewIcon spin color="currentColor" />}>
+          Approving
+        </Button>
         <Button isLoading variant="success">
           Approving
         </Button>
