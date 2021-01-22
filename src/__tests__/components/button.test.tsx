@@ -8,6 +8,7 @@ it("renders correctly", () => {
     <DocumentFragment>
       <button
         class="sc-bdfBwQ fvqUiO"
+        type="button"
       >
         Submit
       </button>

@@ -89,6 +89,7 @@ const StyledButton = styled.button<ButtonProps>`
 
 StyledButton.defaultProps = {
   fullWidth: false,
+  type: "button",
 };
 
 export default StyledButton;

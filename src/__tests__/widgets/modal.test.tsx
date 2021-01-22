@@ -26,6 +26,7 @@ it("renders correctly", () => {
           <button
             aria-label="Close the dialog"
             class="sc-dlfnbm eFWcOR sc-iBPRYJ cdpwBX"
+            type="button"
           >
             <svg
               class="sc-eCssSg iaafwt"
