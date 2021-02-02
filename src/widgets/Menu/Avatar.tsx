@@ -20,6 +20,7 @@ const Avatar: React.FC<AvatarProps> = ({ profile }) => {
   const { username = "Bunny", image, profileLink, noProfileLink } = profile;
   const link = profile.username ? profileLink : noProfileLink;
   const isExternal = link.startsWith("http");
+  const ariaLabel = "Link to profile";
   const icon = image ? (
     <img src={image} alt="profile avatar" height="32px" width="32px" />
   ) : (
@@ -29,14 +30,18 @@ const Avatar: React.FC<AvatarProps> = ({ profile }) => {
   if (isExternal) {
     return (
       <StyledAvatar title={username}>
-        <a href={link}>{icon}</a>
+        <a href={link} aria-label={ariaLabel}>
+          {icon}
+        </a>
       </StyledAvatar>
     );
   }
 
   return (
     <StyledAvatar title={username}>
-      <Link to={link}>{icon}</Link>
+      <Link to={link} aria-label={ariaLabel}>
+        {icon}
+      </Link>
     </StyledAvatar>
   );
 };
