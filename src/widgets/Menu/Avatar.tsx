@@ -5,7 +5,7 @@ import { Profile } from "./types";
 import NoProfileAvatar from "./icons/NoProfileAvatar";
 
 interface AvatarProps {
-  profile?: Profile;
+  profile: Profile;
 }
 
 const StyledAvatar = styled.div`
@@ -17,10 +17,6 @@ const StyledAvatar = styled.div`
 `;
 
 const Avatar: React.FC<AvatarProps> = ({ profile }) => {
-  if (!profile) {
-    return null;
-  }
-
   const { username = "Bunny", image, profileLink, noProfileLink } = profile;
   const link = profile.username ? profileLink : noProfileLink;
   const isExternal = link.startsWith("http");
