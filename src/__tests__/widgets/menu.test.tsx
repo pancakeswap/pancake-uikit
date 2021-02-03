@@ -565,7 +565,7 @@ it("renders correctly", () => {
             </div>
           </div>
           <div
-            class="sc-iktFzd dZNXlz"
+            class="sc-iktFzd gwBINE"
           >
             body
           </div>
