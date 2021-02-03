@@ -136,6 +136,10 @@ export const socials = [
         href: "https://t.me/PancakeSwapPortuguese",
       },
       {
+        label: "Español",
+        href: "https://t.me/PancakeswapEs",
+      },
+      {
         label: "Announcements",
         href: "https://t.me/PancakeSwapAnn",
       },
