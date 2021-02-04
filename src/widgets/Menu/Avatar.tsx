@@ -29,7 +29,7 @@ const Pip = styled.div`
 `;
 
 const Avatar: React.FC<AvatarProps> = ({ profile }) => {
-  const { username = "Bunny", image, profileLink, noProfileLink } = profile;
+  const { username = "Bunny", image, profileLink, noProfileLink, showPip = false } = profile;
   const link = profile.username ? profileLink : noProfileLink;
   const isExternal = link.startsWith("http");
   const ariaLabel = "Link to profile";
@@ -38,7 +38,6 @@ const Avatar: React.FC<AvatarProps> = ({ profile }) => {
   ) : (
     <NoProfileAvatar width="32px" height="32px" />
   );
-  const pip = !image ? <Pip /> : null;
 
   if (isExternal) {
     return (
@@ -46,7 +45,7 @@ const Avatar: React.FC<AvatarProps> = ({ profile }) => {
         <a href={link} aria-label={ariaLabel}>
           {icon}
         </a>
-        {pip}
+        {showPip && <Pip />}
       </StyledAvatar>
     );
   }
@@ -56,7 +55,7 @@ const Avatar: React.FC<AvatarProps> = ({ profile }) => {
       <Link to={link} aria-label={ariaLabel}>
         {icon}
       </Link>
-      {pip}
+      {showPip && <Pip />}
     </StyledAvatar>
   );
 };
