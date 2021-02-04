@@ -42,6 +42,7 @@ export const links = [
     label: "Profile & Teams",
     icon: "GroupsIcon",
     href: "/profile",
+    calloutClass: "rainbow",
   },
   {
     label: "Info",

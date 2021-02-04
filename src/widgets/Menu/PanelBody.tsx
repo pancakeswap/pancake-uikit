@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useLocation } from "react-router-dom";
 import { SvgProps } from "../../components/Svg";
 import * as IconModule from "./icons";
@@ -14,12 +14,31 @@ interface Props extends PanelProps, PushedProps {
 
 const Icons = (IconModule as unknown) as { [key: string]: React.FC<SvgProps> };
 
+const rainbowAnimation = keyframes`
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
+
+  .rainbow {
+    -webkit-background-clip: text;
+    animation: ${rainbowAnimation} 6s ease-in-out infinite;
+    background: linear-gradient(to right, #66f, #09f, lime, #f39, #66f);
+    background-clip: text;
+    color: transparent !important;
+    background-size: 400% 100%;
+  }
 `;
 
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
@@ -53,7 +72,11 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
           );
         }
         return (
-          <MenuEntry key={entry.label} isActive={entry.href === location.pathname}>
+          <MenuEntry
+            key={entry.label}
+            isActive={entry.href === location.pathname}
+            className={entry.calloutClass ? entry.calloutClass : undefined}
+          >
             <MenuLink href={entry.href} onClick={handleClick}>
               {iconElement}
               <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>

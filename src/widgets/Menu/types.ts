@@ -1,5 +1,7 @@
 import { Login } from "../WalletModal/types";
 
+export type CalloutClass = "raindbow";
+
 export interface LangType {
   code: string;
   language: string;
@@ -26,6 +28,7 @@ export interface NavTheme {
 export interface MenuSubEntry {
   label: string;
   href: string;
+  calloutClass?: CalloutClass;
 }
 
 export interface MenuEntry {
@@ -33,6 +36,7 @@ export interface MenuEntry {
   icon: string;
   items?: MenuSubEntry[];
   href?: string;
+  calloutClass?: CalloutClass;
   initialOpenState?: boolean;
 }
 
