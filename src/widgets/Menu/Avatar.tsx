@@ -10,10 +10,22 @@ interface AvatarProps {
 
 const StyledAvatar = styled.div`
   margin-left: 8px;
+  position: relative;
 
   img {
     border-radius: 50%;
   }
+`;
+
+const Pip = styled.div`
+  background-color: ${({ theme }) => theme.colors.failure};
+  border-radius: 50%;
+  pointer-events: none;
+  height: 8px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 8px;
 `;
 
 const Avatar: React.FC<AvatarProps> = ({ profile }) => {
@@ -26,6 +38,7 @@ const Avatar: React.FC<AvatarProps> = ({ profile }) => {
   ) : (
     <NoProfileAvatar width="32px" height="32px" />
   );
+  const pip = !image ? <Pip /> : null;
 
   if (isExternal) {
     return (
@@ -33,6 +46,7 @@ const Avatar: React.FC<AvatarProps> = ({ profile }) => {
         <a href={link} aria-label={ariaLabel}>
           {icon}
         </a>
+        {pip}
       </StyledAvatar>
     );
   }
@@ -42,6 +56,7 @@ const Avatar: React.FC<AvatarProps> = ({ profile }) => {
       <Link to={link} aria-label={ariaLabel}>
         {icon}
       </Link>
+      {pip}
     </StyledAvatar>
   );
 };
