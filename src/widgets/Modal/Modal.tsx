@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Heading from "../../components/Heading/Heading";
-import Button from "../../components/Button/Button";
 import Flex from "../../components/Flex/Flex";
 import { CloseIcon } from "../../components/Svg";
+import { IconButton } from "../../components/Button";
 import { InjectedProps } from "./types";
 
 interface Props extends InjectedProps {
@@ -34,18 +34,13 @@ const ModalHeader = styled.div`
   padding: 12px 24px;
 `;
 
-const CloseButton = styled(Button)`
-  padding: 8px;
-  width: 48px;
-`;
-
 const Modal: React.FC<Props> = ({ title, onDismiss, children }) => (
   <StyledModal>
     <ModalHeader>
       <Heading>{title}</Heading>
-      <CloseButton variant="text" onClick={onDismiss} aria-label="Close the dialog">
-        <CloseIcon color="primary" onClick={onDismiss} />
-      </CloseButton>
+      <IconButton variant="text" onClick={onDismiss} aria-label="Close the dialog">
+        <CloseIcon color="primary" />
+      </IconButton>
     </ModalHeader>
     <Flex flexDirection="column" p="24px">
       {children}
