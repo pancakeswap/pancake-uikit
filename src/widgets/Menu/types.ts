@@ -1,6 +1,6 @@
 import { Login } from "../WalletModal/types";
 
-export type CalloutClass = "raindbow";
+export type CalloutClass = "rainbow";
 
 export interface LangType {
   code: string;

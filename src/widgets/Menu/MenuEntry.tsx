@@ -39,20 +39,6 @@ const MenuEntry = styled.div<Props>`
     align-items: center;
     width: 100%;
     height: 100%;
-
-    &.rainbow {
-      -webkit-background-clip: text;
-      animation: ${rainbowAnimation} 6s ease-in-out infinite;
-      background: linear-gradient(to right, #66f, #09f, lime, #f39, #66f);
-      background-clip: text;
-      color: transparent;
-      background-size: 400% 100%;
-      font-weight: bold;
-
-      ${LinkLabel} {
-        color: transparent;
-      }
-    }
   }
 
   svg {
@@ -65,6 +51,14 @@ const MenuEntry = styled.div<Props>`
 
   // Safari fix
   flex-shrink: 0;
+
+  &.rainbow {
+    -webkit-background-clip: text;
+    animation: ${rainbowAnimation} 3s ease-in-out infinite;
+    background: ${({ theme }) => theme.colors.gradients.bubblegum};
+    background-size: 200% 100%;
+    font-weight: bold;
+  }
 `;
 MenuEntry.defaultProps = {
   secondary: false,

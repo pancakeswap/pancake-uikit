@@ -41,7 +41,16 @@ export const links = [
   {
     label: "Profile & Teams",
     icon: "GroupsIcon",
-    href: "/profile",
+    items: [
+      {
+        label: "Leaderboard",
+        href: "/",
+      },
+      {
+        label: "YourProfile",
+        href: "/",
+      },
+    ],
     calloutClass: "rainbow",
   },
   {
