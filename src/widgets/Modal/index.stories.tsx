@@ -63,9 +63,5 @@ const BackButtonModal: React.FC<BackButtonModalProps> = ({ title, onDismiss }) =
 export const WithBackButton: React.FC = () => {
   const [onPresent1] = useModal(<BackButtonModal title="Modal with no X" />, false);
 
-  return (
-    <div>
-      <Button onClick={onPresent1}>Only Back Button</Button>
-    </div>
-  );
+  return <Button onClick={onPresent1}>Only Back Button</Button>;
 };
