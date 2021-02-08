@@ -579,7 +579,11 @@ it("renders correctly", () => {
             </div>
           </div>
           <div
-            class="sc-iktFzd gwBINE"
+<<<<<<< HEAD
+            class="sc-iktFzd jxRCvt"
+=======
+            class="sc-jJEJSO csWmhS"
+>>>>>>> 2ff467aeda200d94dfc40cc3ad83929fc11daaa2
           >
             body
           </div>
