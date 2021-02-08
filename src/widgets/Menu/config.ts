@@ -41,7 +41,17 @@ export const links = [
   {
     label: "Profile & Teams",
     icon: "GroupsIcon",
-    href: "/profile",
+    items: [
+      {
+        label: "Leaderboard",
+        href: "/",
+      },
+      {
+        label: "YourProfile",
+        href: "/",
+      },
+    ],
+    calloutClass: "rainbow",
   },
   {
     label: "Info",
@@ -139,6 +149,18 @@ export const socials = [
       {
         label: "Português",
         href: "https://t.me/PancakeSwapPortuguese",
+      },
+      {
+        label: "Español",
+        href: "https://t.me/PancakeswapEs",
+      },
+      {
+        label: "日本語",
+        href: "https://t.me/pancakeswapjp",
+      },
+      {
+        label: "Français",
+        href: "https://t.me/pancakeswapfr",
       },
       {
         label: "Announcements",

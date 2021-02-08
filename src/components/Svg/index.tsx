@@ -1,4 +1,5 @@
 export { default as AddIcon } from "./Icons/Add";
+export { default as ArrowBackIcon } from "./Icons/ArrowBack";
 export { default as ArrowDownIcon } from "./Icons/ArrowDown";
 export { default as ArrowDropDownIcon } from "./Icons/ArrowDropDown";
 export { default as ArrowDropUpIcon } from "./Icons/ArrowDropUp";
@@ -12,6 +13,7 @@ export { default as CalculateIcon } from "./Icons/Calculate";
 export { default as CheckmarkIcon } from "./Icons/Checkmark";
 export { default as CheckmarkCircleIcon } from "./Icons/CheckmarkCircle";
 export { default as ChevronDownIcon } from "./Icons/ChevronDown";
+export { default as ChevronLeftIcon } from "./Icons/ChevronLeft";
 export { default as ChevronRightIcon } from "./Icons/ChevronRight";
 export { default as ChevronUpIcon } from "./Icons/ChevronUp";
 export { default as CloseIcon } from "./Icons/Close";
