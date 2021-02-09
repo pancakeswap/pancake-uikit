@@ -4,4 +4,6 @@ export type ToggleTheme = {
   handleBackground: string;
 };
 
-export type ToggleProps = InputHTMLAttributes<HTMLInputElement>;
+export interface ToggleProps extends InputHTMLAttributes<HTMLInputElement> {
+  small?: boolean;
+}
