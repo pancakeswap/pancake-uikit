@@ -4,6 +4,36 @@ export type ToggleTheme = {
   handleBackground: string;
 };
 
+
+export const scales = {
+  SM: "sm",
+  MD: "md",
+} as const;
+
+export type Scales = typeof scales[keyof typeof scales];
+
 export interface ToggleProps extends InputHTMLAttributes<HTMLInputElement> {
-  small?: boolean;
+  scale: Scales;
 }
+
+export interface HandleProps extends InputHTMLAttributes<HTMLInputElement> {
+  scale: Scales;
+}
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  scale: Scales;
+}
+
+
+export const scaleKeys = {
+  handleHeight: 'handleHeight',
+  handleWidth: 'handleWidth',
+  handleLeft: 'handleLeft',
+  handleTop: 'handleTop',
+  checkedLeft: 'checkedLeft',
+  toggleHeight: 'toggleHeight',
+  toggleWidth: 'toggleWidth',
+} as const;
+
+export type ScaleKeys = typeof scaleKeys[keyof typeof scaleKeys];
+

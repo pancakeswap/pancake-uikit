@@ -49,3 +49,4 @@ it("renders correctly scale sm", () => {
     </DocumentFragment>
   `);
 });
+
