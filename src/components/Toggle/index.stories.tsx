@@ -13,11 +13,11 @@ export const Default: React.FC = () => {
 
   return (
     <>
-      <div>
+      <div style={{ marginBottom: "32px" }}>
         <Toggle checked={isChecked} onChange={toggle} />
       </div>
       <div>
-        <Toggle checked={isChecked} onChange={toggle} small />
+        <Toggle checked={isChecked} onChange={toggle} scale="sm" />
       </div>
     </>
   );
