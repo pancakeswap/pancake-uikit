@@ -5,7 +5,7 @@ import Toggle from "../../components/Toggle/Toggle";
 const handleChange = jest.fn();
 
 it("renders correctly", () => {
-  const { asFragment } = renderWithTheme(<Toggle checked onChange={handleChange} />);
+  const { asFragment } = renderWithTheme(<Toggle checked onChange={handleChange} scale="md" />);
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <div

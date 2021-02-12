@@ -11,11 +11,11 @@ export const scales = {
 
 export type Scales = typeof scales[keyof typeof scales];
 
-export interface ToggleProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface ToggleProps {
   scale: Scales;
 }
 
-export interface HandleProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface HandleProps {
   scale: Scales;
 }
 
