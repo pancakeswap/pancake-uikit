@@ -1,3 +1,4 @@
+import React from "react";
 import useWalletRouting from './useWalletRouting';
 import Text from "../components/Text/Text";
 
