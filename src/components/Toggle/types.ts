@@ -13,6 +13,7 @@ export type Scales = typeof scales[keyof typeof scales];
 
 export interface ToggleProps {
   scale: Scales;
+  checked?: boolean;
 }
 
 export interface HandleProps {
