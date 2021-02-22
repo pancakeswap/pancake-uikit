@@ -16,7 +16,7 @@ export const Box: React.FC = () => {
       <BoxComponent as="p">
         Contains background, border, layout, position, and space from{" "}
         <Link href="https://styled-system.com/api" target="_blank">
-          Styled System's API
+          Styled System&lsquo;s API
         </Link>
       </BoxComponent>
     </div>
