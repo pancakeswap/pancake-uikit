@@ -19,13 +19,13 @@ export interface PancakeTheme {
   modal: ModalTheme;
   radio: RadioTheme;
   toggle: ToggleTheme;
+  tooltip: TooltipTheme;
   breakpoints: Breakpoints;
   mediaQueries: MediaQueries;
   spacing: Spacing;
   shadows: Shadows;
   radii: Radii;
   zIndices: ZIndices;
-  tooltip: TooltipTheme;
 }
 
 export { default as dark } from "./dark";
