@@ -15,7 +15,7 @@ const useKonamiCheatCode = (matchedCodeHandler: () => void): void => {
 
     let currentIndex = 0;
 
-    function onKeyUpHandler(event: KeyboardEvent): void {
+    const onKeyUpHandler = (event: KeyboardEvent) => {
       const { key } = event;
       // is key in correct order otherwise reset
       if (key !== pattern[currentIndex]) {
@@ -27,7 +27,7 @@ const useKonamiCheatCode = (matchedCodeHandler: () => void): void => {
         currentIndex = 0;
         matchedCodeHandler();
       }
-    }
+    };
 
     document.addEventListener("keyup", onKeyUpHandler);
     return () => document.removeEventListener("keyup", onKeyUpHandler);

@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import BunnyIcon from "../Svg/Icons/Bunny";
+import BunnyIcon from "../Svg/Icons/Logo";
 import { BunnyProps, FallingBunniesProps } from "./types";
 
 const bunnyFall = keyframes`
@@ -25,7 +25,7 @@ const Bunny = styled.div<BunnyProps>`
   position: fixed;
   top: 0;
   left: ${({ randPos }) => `${randPos}vw`};
-  transform: translateY(-100%);
+  transform: translate3d(0, -100%, 0);
   user-select: none;
   pointer-events: none;
   z-index: 99999;
@@ -71,7 +71,7 @@ const FallingBunnies: React.FC<FallingBunniesProps> = ({
   iterations = Infinity,
   duration = 10,
 }) => {
-  const bunnies = new Array(count).fill(undefined).map((_, index) => (
+  const bunnies = [...Array(count)].map((_, index) => (
     <Bunny key={String(index)} randPos={Math.random() * 100} iterations={iterations} duration={duration}>
       <BunnyIcon width={size} height={size} />
     </Bunny>
