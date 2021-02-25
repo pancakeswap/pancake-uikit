@@ -1,6 +1,5 @@
 export interface BunnyProps {
-  key: string;
-  randPos: number;
+  position: number;
   iterations: number;
   duration: number;
 }

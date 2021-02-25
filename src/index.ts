@@ -7,6 +7,7 @@ export * from "./components/ButtonMenu";
 export * from "./components/Card";
 export * from "./components/Checkbox";
 export * from "./components/Dropdown";
+export * from "./components/FallingBunnies";
 export * from "./components/Heading";
 export * from "./components/Image";
 export * from "./components/Input";
@@ -21,7 +22,6 @@ export * from "./components/Spinner";
 export * from "./components/Skeleton";
 export * from "./components/Toggle";
 export * from "./components/Table";
-export * from "./components/FallingBunnies";
 
 // Hooks
 export * from "./hooks";

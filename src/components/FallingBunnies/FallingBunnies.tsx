@@ -24,7 +24,7 @@ const Bunny = styled.div<BunnyProps>`
   display: inline-flex;
   position: fixed;
   top: 0;
-  left: ${({ randPos }) => `${randPos}vw`};
+  left: ${({ position }) => `${position}vw`};
   transform: translate3d(0, -100%, 0);
   user-select: none;
   pointer-events: none;
@@ -72,7 +72,7 @@ const FallingBunnies: React.FC<FallingBunniesProps> = ({
   duration = 10,
 }) => {
   const bunnies = [...Array(count)].map((_, index) => (
-    <Bunny key={String(index)} randPos={Math.random() * 100} iterations={iterations} duration={duration}>
+    <Bunny key={String(index)} position={Math.random() * 100} iterations={iterations} duration={duration}>
       <BunnyIcon width={size} height={size} />
     </Bunny>
   ));
