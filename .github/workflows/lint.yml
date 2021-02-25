@@ -13,7 +13,8 @@ jobs:
       - uses: wagoid/commitlint-github-action@v2
         with:
           configFile: .commitlintrc.json
-  lint:
+          helpURL: https://docs.pancakeswap.finance/code/contributing#committing
+  eslint:
     runs-on: ubuntu-latest
 
     steps:
