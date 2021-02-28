@@ -3,7 +3,6 @@ import styled from "styled-components";
 import bunnyHead from "./svg/bunnyhead-main.svg";
 import bunnyHeadMax from "./svg/bunnyhead-max.svg";
 import bunnyButt from "./svg/bunnybutt.svg";
-import { position } from "styled-system";
 
 interface Props {
   min: number;
