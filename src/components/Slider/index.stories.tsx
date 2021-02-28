@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Slider } from './Slider';
+import { Slider } from "./Slider";
 
 export default {
   title: "Components/Slider",
@@ -10,7 +10,5 @@ export default {
 export const Default: React.FC = () => {
   const [value, setValue] = useState<number>(1);
 
-  return (
-    <Slider min={0} max={10} value={value} onValueChanged={setValue} />
-  );
+  return <Slider min={0} max={10} value={value} onValueChanged={setValue} />;
 };

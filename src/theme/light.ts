@@ -21,7 +21,7 @@ const lightTheme: DefaultTheme = {
   nav: lightNav,
   modal: lightModal,
   radio: lightRadio,
-  tooltip: lightTooltip
+  tooltip: lightTooltip,
 };
 
 export default lightTheme;
