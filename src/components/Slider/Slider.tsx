@@ -1,8 +1,10 @@
 import React, { ChangeEvent, InputHTMLAttributes } from "react";
 import styled from "styled-components";
-import bunnyHead from "./svg/bunnyhead-main.svg";
-import bunnyHeadMax from "./svg/bunnyhead-max.svg";
-import bunnyButt from "./svg/bunnybutt.svg";
+
+// Using require instead of import to avoid trouble with TS bunding and SVG types
+const bunnyButt = require('./svg/bunnybutt.svg');
+const bunnyHead = require('./svg/bunnyhead-main.svg');
+const bunnyHeadMax = require('./svg/bunnyhead-max.svg');
 
 interface Props {
   min: number;
