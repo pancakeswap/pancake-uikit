@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Slider } from "./Slider";
-import { Heading } from '../Heading'
+import { Heading } from "../Heading";
 import styled from "styled-components";
 import Flex from "../Box/Flex";
 
@@ -18,7 +18,10 @@ const Col = styled(Flex)`
 export const Default: React.FC = () => {
   const [value, setValue] = useState<number>(5);
 
-  return <Slider min={0} max={10} value={value} onValueChanged={setValue} />;
+  return (<Col>
+
+    <Slider min={0} max={10} value={value} onValueChanged={setValue} />
+  </Col>)
 };
 
 export const Variants: React.FC = () => {
@@ -28,18 +31,13 @@ export const Variants: React.FC = () => {
       <SliderVariant initialValue={5} />
       <SliderVariant initialValue={10} />
     </Col>
-  )
-}
+  );
+};
 
 const SliderVariant = ({ initialValue }: { initialValue: number }) => {
   const [value, setValue] = useState(initialValue);
 
   return (
-    <div>
-      <Heading>{value * 10} %</Heading>
-
-      <Slider min={0} max={10} value={value} onValueChanged={setValue} />
-    </div>
-
-  )
-}
+    <Slider min={0} max={10} value={value} onValueChanged={setValue} />
+  );
+};

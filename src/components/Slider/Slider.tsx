@@ -3,6 +3,7 @@ import styled from "styled-components";
 import bunnyHead from "./svg/bunnyhead-main.svg";
 import bunnyHeadMax from "./svg/bunnyhead-max.svg";
 import bunnyButt from "./svg/bunnybutt.svg";
+import { position } from 'styled-system';
 
 interface Props {
     min: number;
@@ -22,8 +23,11 @@ export const Slider = ({ min, max, value, onValueChanged }: Props) => {
     const progressPercentage = (value / max) * 100;
     const currentValueIsMaxValue = value === max;
 
+    // We need to adjust the offset as the percentage increases, as 100% really is 100% - label width. The number 8 is arbitrary, but seems to work...
+    const labelOffset = progressPercentage - (progressPercentage / 8);
+
     return (
-        <div style={{ position: "relative", height: "32px" }}>
+        <SliderContainer>
             <BunnyButt src={bunnyButt} />
             <BunnySlider>
                 <BarBackground />
@@ -37,12 +41,22 @@ export const Slider = ({ min, max, value, onValueChanged }: Props) => {
                     onChange={handleChange}
                     currentValueIsMaxValue={currentValueIsMaxValue}
                 />
+                <SliderLabel progress={labelOffset}>{currentValueIsMaxValue ? "MAX" : `${progressPercentage}%`}</SliderLabel>
             </BunnySlider>
-        </div>
+        </SliderContainer>
     );
 };
 
-const height = "34px";
+const SliderContainer = styled.div`
+    position: relative;
+    height: 48px;
+`
+
+const SliderLabel = styled.label<{ progress: number }>`
+    position: absolute;
+    bottom: 0;
+    left: calc(${({ progress }) => progress}%);
+`
 
 const BunnyButt = styled.img`
   position: absolute;
@@ -74,7 +88,7 @@ export interface StyledInputProps extends InputHTMLAttributes<HTMLInputElement> 
     currentValueIsMaxValue: boolean;
 }
 const StyledInput = styled.input<StyledInputProps>`
-    height: ${height};
+    height: 34px;
     position: relative;
     cursor: pointer;
     margin-top: 16px; // needed to limit the height on the bar
@@ -92,9 +106,11 @@ const BarBackground = styled.div`
   background-color: ${({ theme }) => theme.colors.inputSecondary};
 `;
 
-const BarProgress = styled.div<{ progress: number, currentValueIsMaxValue: boolean }>`
+const BarProgress = styled.div<{ progress: number; currentValueIsMaxValue: boolean }>`
   position: absolute;
-  width: calc(${({ progress }) => progress}% - ${({ currentValueIsMaxValue }) => currentValueIsMaxValue ? "30px" : "6px"});
+  width: calc(
+    ${({ progress }) => progress}% - ${({ currentValueIsMaxValue }) => (currentValueIsMaxValue ? "30px" : "6px")}
+  );
   height: 10px;
   top: 18px;
 
