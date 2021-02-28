@@ -20,13 +20,14 @@ export const Slider = ({ min, max, value, onValueChanged }: Props) => {
     const name = "asd";
 
     const progressPercentage = (value / max) * 100;
+    const currentValueIsMaxValue = value === max;
 
     return (
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", height: "32px" }}>
             <BunnyButt src={bunnyButt} />
             <BunnySlider>
                 <BarBackground />
-                <BarProgress progress={progressPercentage} />
+                <BarProgress currentValueIsMaxValue={currentValueIsMaxValue} progress={progressPercentage} />
                 <StyledInput
                     name={name}
                     type="range"
@@ -34,15 +35,14 @@ export const Slider = ({ min, max, value, onValueChanged }: Props) => {
                     max={max}
                     value={value}
                     onChange={handleChange}
-                    currentValueIsMaxValue={value === max}
+                    currentValueIsMaxValue={currentValueIsMaxValue}
                 />
             </BunnySlider>
         </div>
     );
 };
 
-const height = "32px";
-const buttWidth = "15px";
+const height = "34px";
 
 const BunnyButt = styled.img`
   position: absolute;
@@ -50,7 +50,7 @@ const BunnyButt = styled.img`
 
 const BunnySlider = styled.div`
   position: absolute;
-  left: ${buttWidth};
+  left: 14px;
   width: 100%;
 `;
 
@@ -62,7 +62,7 @@ const sliderThumb = (max: boolean) => `
     height: 35px;
     cursor: pointer;
     margin-left: -7px;
-    margin-top: -34px;
+    margin-top: -36px;
 
     :hover {
         transform: scale(1.1);
@@ -86,15 +86,15 @@ const StyledInput = styled.input<StyledInputProps>`
 
 const BarBackground = styled.div`
   position: absolute;
-  width: 100%;
+  width: calc(100% - 32px);
   height: 2px;
   top: 18px;
   background-color: ${({ theme }) => theme.colors.inputSecondary};
 `;
 
-const BarProgress = styled.div<{ progress: number }>`
+const BarProgress = styled.div<{ progress: number, currentValueIsMaxValue: boolean }>`
   position: absolute;
-  width: calc(${({ progress }) => progress}% - 6px);
+  width: calc(${({ progress }) => progress}% - ${({ currentValueIsMaxValue }) => currentValueIsMaxValue ? "30px" : "6px"});
   height: 10px;
   top: 18px;
 
