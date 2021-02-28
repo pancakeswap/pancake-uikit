@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Slider } from "./Slider";
-import { Heading } from "../Heading";
 import styled from "styled-components";
+import Slider from "./Slider";
 import Flex from "../Box/Flex";
 
 export default {
@@ -25,6 +24,12 @@ export const Default: React.FC = () => {
   );
 };
 
+const SliderVariant = ({ initialValue }: { initialValue: number }) => {
+  const [value, setValue] = useState(initialValue);
+
+  return <Slider min={0} max={10} value={value} onValueChanged={setValue} />;
+};
+
 export const Variants: React.FC = () => {
   return (
     <Col>
@@ -35,8 +40,3 @@ export const Variants: React.FC = () => {
   );
 };
 
-const SliderVariant = ({ initialValue }: { initialValue: number }) => {
-  const [value, setValue] = useState(initialValue);
-
-  return <Slider min={0} max={10} value={value} onValueChanged={setValue} />;
-};
