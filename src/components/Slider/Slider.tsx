@@ -27,7 +27,15 @@ export const Slider = ({ min, max, value, onValueChanged }: Props) => {
             <BunnySlider>
                 <BarBackground />
                 <BarProgress progress={progressPercentage} />
-                <StyledInput name={name} type="range" min={min} max={max} value={value} onChange={handleChange} currentValueIsMaxValue={value === max} />
+                <StyledInput
+                    name={name}
+                    type="range"
+                    min={min}
+                    max={max}
+                    value={value}
+                    onChange={handleChange}
+                    currentValueIsMaxValue={value === max}
+                />
             </BunnySlider>
         </div>
     );
@@ -45,7 +53,6 @@ const BunnySlider = styled.div`
   left: ${buttWidth};
   width: 100%;
 `;
-
 
 const sliderThumb = (max: boolean) => `
 {
@@ -82,7 +89,7 @@ const BarBackground = styled.div`
   width: 100%;
   height: 2px;
   top: 18px;
-  background-color: #d7caec;
+  background-color: ${({ theme }) => theme.colors.inputSecondary};
 `;
 
 const BarProgress = styled.div<{ progress: number }>`
