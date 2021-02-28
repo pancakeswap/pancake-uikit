@@ -18,10 +18,11 @@ const Col = styled(Flex)`
 export const Default: React.FC = () => {
   const [value, setValue] = useState<number>(5);
 
-  return (<Col>
-
-    <Slider min={0} max={10} value={value} onValueChanged={setValue} />
-  </Col>)
+  return (
+    <Col>
+      <Slider min={0} max={10} value={value} onValueChanged={setValue} />
+    </Col>
+  );
 };
 
 export const Variants: React.FC = () => {
@@ -37,7 +38,5 @@ export const Variants: React.FC = () => {
 const SliderVariant = ({ initialValue }: { initialValue: number }) => {
   const [value, setValue] = useState(initialValue);
 
-  return (
-    <Slider min={0} max={10} value={value} onValueChanged={setValue} />
-  );
+  return <Slider min={0} max={10} value={value} onValueChanged={setValue} />;
 };

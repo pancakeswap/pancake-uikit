@@ -3,60 +3,60 @@ import styled from "styled-components";
 import bunnyHead from "./svg/bunnyhead-main.svg";
 import bunnyHeadMax from "./svg/bunnyhead-max.svg";
 import bunnyButt from "./svg/bunnybutt.svg";
-import { position } from 'styled-system';
+import { position } from "styled-system";
 
 interface Props {
-    min: number;
-    max: number;
-    value: number;
-    onValueChanged: (newValue: number) => void;
+  min: number;
+  max: number;
+  value: number;
+  onValueChanged: (newValue: number) => void;
 }
 
 export const Slider = ({ min, max, value, onValueChanged }: Props) => {
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        let newValue = e.target.value;
-        onValueChanged(parseInt(newValue));
-    };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let newValue = e.target.value;
+    onValueChanged(parseInt(newValue));
+  };
 
-    const name = "asd";
+  const name = "asd";
 
-    const progressPercentage = (value / max) * 100;
-    const currentValueIsMaxValue = value === max;
+  const progressPercentage = (value / max) * 100;
+  const currentValueIsMaxValue = value === max;
 
-    // We need to adjust the offset as the percentage increases, as 100% really is 100% - label width. The number 8 is arbitrary, but seems to work...
-    const labelOffset = progressPercentage - (progressPercentage / 8);
+  // We need to adjust the offset as the percentage increases, as 100% really is 100% - label width. The number 8 is arbitrary, but seems to work...
+  const labelOffset = progressPercentage - progressPercentage / 8;
 
-    return (
-        <SliderContainer>
-            <BunnyButt src={bunnyButt} />
-            <BunnySlider>
-                <BarBackground />
-                <BarProgress currentValueIsMaxValue={currentValueIsMaxValue} progress={progressPercentage} />
-                <StyledInput
-                    name={name}
-                    type="range"
-                    min={min}
-                    max={max}
-                    value={value}
-                    onChange={handleChange}
-                    currentValueIsMaxValue={currentValueIsMaxValue}
-                />
-                <SliderLabel progress={labelOffset}>{currentValueIsMaxValue ? "MAX" : `${progressPercentage}%`}</SliderLabel>
-            </BunnySlider>
-        </SliderContainer>
-    );
+  return (
+    <SliderContainer>
+      <BunnyButt src={bunnyButt} />
+      <BunnySlider>
+        <BarBackground />
+        <BarProgress currentValueIsMaxValue={currentValueIsMaxValue} progress={progressPercentage} />
+        <StyledInput
+          name={name}
+          type="range"
+          min={min}
+          max={max}
+          value={value}
+          onChange={handleChange}
+          currentValueIsMaxValue={currentValueIsMaxValue}
+        />
+        <SliderLabel progress={labelOffset}>{currentValueIsMaxValue ? "MAX" : `${progressPercentage}%`}</SliderLabel>
+      </BunnySlider>
+    </SliderContainer>
+  );
 };
 
 const SliderContainer = styled.div`
-    position: relative;
-    height: 48px;
-`
+  position: relative;
+  height: 48px;
+`;
 
 const SliderLabel = styled.label<{ progress: number }>`
-    position: absolute;
-    bottom: 0;
-    left: calc(${({ progress }) => progress}%);
-`
+  position: absolute;
+  bottom: 0;
+  left: calc(${({ progress }) => progress}%);
+`;
 
 const BunnyButt = styled.img`
   position: absolute;
@@ -85,7 +85,7 @@ const sliderThumb = (max: boolean) => `
 }`;
 
 export interface StyledInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    currentValueIsMaxValue: boolean;
+  currentValueIsMaxValue: boolean;
 }
 const StyledInput = styled.input<StyledInputProps>`
     height: 34px;
