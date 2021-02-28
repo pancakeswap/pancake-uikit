@@ -2,9 +2,9 @@ import React, { ChangeEvent, InputHTMLAttributes } from "react";
 import styled from "styled-components";
 
 // Using require instead of import to avoid trouble with TS bunding and SVG types
-const bunnyButt = require('./svg/bunnybutt.svg');
-const bunnyHead = require('./svg/bunnyhead-main.svg');
-const bunnyHeadMax = require('./svg/bunnyhead-max.svg');
+const bunnyButt = require("./svg/bunnybutt.svg");
+const bunnyHead = require("./svg/bunnyhead-main.svg");
+const bunnyHeadMax = require("./svg/bunnyhead-max.svg");
 
 interface Props {
   min: number;
@@ -19,8 +19,6 @@ export const Slider = ({ min, max, value, onValueChanged }: Props) => {
     onValueChanged(parseInt(newValue));
   };
 
-  const name = "asd";
-
   const progressPercentage = (value / max) * 100;
   const currentValueIsMaxValue = value === max;
 
@@ -34,7 +32,6 @@ export const Slider = ({ min, max, value, onValueChanged }: Props) => {
         <BarBackground />
         <BarProgress currentValueIsMaxValue={currentValueIsMaxValue} progress={progressPercentage} />
         <StyledInput
-          name={name}
           type="range"
           min={min}
           max={max}
