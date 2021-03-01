@@ -24,7 +24,7 @@ const Slider: React.FC<SliderProps> = ({ min, max, value, onValueChanged, valueL
   };
 
   const progressPercentage = (value / max) * 100;
-  const currentValueIsMaxValue = value === max;
+  const isCurrentValueMaxValue = value === max;
 
   const labelOffset = progressPercentage - progressPercentage / MOVING_SLIDER_LABEL_OFFSET_FACTOR;
 
@@ -33,14 +33,14 @@ const Slider: React.FC<SliderProps> = ({ min, max, value, onValueChanged, valueL
       <BunnyButt src={bunnyButt} />
       <BunnySlider>
         <BarBackground />
-        <BarProgress currentValueIsMaxValue={currentValueIsMaxValue} progress={progressPercentage} />
+        <BarProgress currentValueIsMaxValue={isCurrentValueMaxValue} progress={progressPercentage} />
         <StyledInput
           type="range"
           min={min}
           max={max}
           value={value}
           onChange={handleChange}
-          currentValueIsMaxValue={currentValueIsMaxValue}
+          currentValueIsMaxValue={isCurrentValueMaxValue}
         />
       </BunnySlider>
 

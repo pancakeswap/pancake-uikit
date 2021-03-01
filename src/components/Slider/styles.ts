@@ -30,10 +30,10 @@ export const BunnySlider = styled.div`
   width: 100%;
 `;
 
-export const sliderThumb = (max: boolean): string => `
+export const sliderThumb = (isCurrentValueMaxValue: boolean): string => `
 {
     -webkit-appearance: none;
-    background-image: url(${max ? bunnyHeadMax : bunnyHead});
+    background-image: url(${isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead});
     width: 24px;
     height: 32px;
     cursor: pointer;
@@ -48,7 +48,7 @@ export const sliderThumb = (max: boolean): string => `
 }`;
 
 interface StyledInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  currentValueIsMaxValue: boolean;
+  isCurrentValueMaxValue: boolean;
 }
 
 export const StyledInput = styled.input<StyledInputProps>`
@@ -56,9 +56,9 @@ export const StyledInput = styled.input<StyledInputProps>`
     position: relative;
     cursor: pointer;
 
-    ::-webkit-slider-thumb ${({ currentValueIsMaxValue }) => sliderThumb(currentValueIsMaxValue)} 
-    ::-moz-range-thumb ${({ currentValueIsMaxValue }) => sliderThumb(currentValueIsMaxValue)}  
-    ::-ms-thumb ${({ currentValueIsMaxValue }) => sliderThumb(currentValueIsMaxValue)} 
+    ::-webkit-slider-thumb ${({ isCurrentValueMaxValue }) => sliderThumb(isCurrentValueMaxValue)} 
+    ::-moz-range-thumb ${({ isCurrentValueMaxValue }) => sliderThumb(isCurrentValueMaxValue)}  
+    ::-ms-thumb ${({ isCurrentValueMaxValue }) => sliderThumb(isCurrentValueMaxValue)} 
 `;
 
 export const BarBackground = styled.div`
