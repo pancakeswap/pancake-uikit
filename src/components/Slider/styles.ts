@@ -1,5 +1,6 @@
 import { InputHTMLAttributes } from "react";
 import styled from "styled-components";
+import { Box } from "../..";
 
 // Using require instead of import to avoid trouble with TS bunding and SVG types
 /* eslint-disable @typescript-eslint/no-var-requires */
@@ -7,7 +8,7 @@ const bunnyHead = require("./svg/bunnyhead-main.svg");
 const bunnyHeadMax = require("./svg/bunnyhead-max.svg");
 /* eslint-enable @typescript-eslint/no-var-requires */
 
-export const SliderContainer = styled.div`
+export const SliderContainer = styled(Box)`
   position: relative;
   height: 48px;
 `;
@@ -15,6 +16,7 @@ export const SliderContainer = styled.div`
 export const SliderLabel = styled.label<{ progress: number }>`
   position: absolute;
   bottom: 0;
+  margin-left: 16px; // offset the bunny butt width
   left: calc(${({ progress }) => progress}%);
 `;
 
@@ -32,11 +34,12 @@ export const sliderThumb = (max: boolean): string => `
 {
     -webkit-appearance: none;
     background-image: url(${max ? bunnyHeadMax : bunnyHead});
-    width: 28px;
-    height: 35px;
+    width: 24px;
+    height: 32px;
     cursor: pointer;
-    margin-left: -7px;
-    margin-top: -36px;
+    margin-left: -2px;
+    margin-top: -4px;
+    transition: 0.1s all;
 
     :hover {
         transform: scale(1.1);
@@ -49,10 +52,9 @@ interface StyledInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const StyledInput = styled.input<StyledInputProps>`
-    height: 34px;
+    height: 32px;
     position: relative;
     cursor: pointer;
-    margin-top: 16px; // needed to limit the height on the bar
 
     ::-webkit-slider-thumb ${({ currentValueIsMaxValue }) => sliderThumb(currentValueIsMaxValue)} 
     ::-moz-range-thumb ${({ currentValueIsMaxValue }) => sliderThumb(currentValueIsMaxValue)}  
@@ -61,7 +63,7 @@ export const StyledInput = styled.input<StyledInputProps>`
 
 export const BarBackground = styled.div`
   position: absolute;
-  width: calc(100% - 32px);
+  width: 100%;
   height: 2px;
   top: 18px;
   background-color: ${({ theme }) => theme.colors.inputSecondary};
@@ -69,9 +71,7 @@ export const BarBackground = styled.div`
 
 export const BarProgress = styled.div<{ progress: number; currentValueIsMaxValue: boolean }>`
   position: absolute;
-  width: calc(
-    ${({ progress }) => progress}% - ${({ currentValueIsMaxValue }) => (currentValueIsMaxValue ? "30px" : "6px")}
-  );
+  width: ${({ progress, currentValueIsMaxValue }) => (currentValueIsMaxValue ? "calc(100% - 16px)" : `${progress}%`)};
   height: 10px;
   top: 18px;
 

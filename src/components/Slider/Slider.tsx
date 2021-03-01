@@ -1,5 +1,13 @@
 import React, { ChangeEvent } from "react";
-import { SliderContainer, BunnyButt, BunnySlider, BarBackground, BarProgress, StyledInput, SliderLabel } from "./styles";
+import {
+  SliderContainer,
+  BunnyButt,
+  BunnySlider,
+  BarBackground,
+  BarProgress,
+  StyledInput,
+  SliderLabel,
+} from "./styles";
 import SliderProps from "./types";
 
 // Using require instead of import to avoid trouble with TS bunding and SVG types
@@ -7,8 +15,8 @@ import SliderProps from "./types";
 const bunnyButt = require("./svg/bunnybutt.svg");
 /* eslint-enable @typescript-eslint/no-var-requires */
 
-// We need to adjust the offset as the percentage increases, as 100% really is 100% - label width. The number 8 is arbitrary, but seems to work...
-const MOVING_SLIDER_LABEL_OFFSET_FACTOR = 8;
+// We need to adjust the offset as the percentage increases, as 100% really is 100% - label width. The number 10 is arbitrary, but seems to work...
+const MOVING_SLIDER_LABEL_OFFSET_FACTOR = 10;
 
 const Slider: React.FC<SliderProps> = ({ min, max, value, onValueChanged }) => {
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -34,8 +42,9 @@ const Slider: React.FC<SliderProps> = ({ min, max, value, onValueChanged }) => {
           onChange={handleChange}
           currentValueIsMaxValue={currentValueIsMaxValue}
         />
-        <SliderLabel progress={labelOffset}>{currentValueIsMaxValue ? "MAX" : `${progressPercentage}%`}</SliderLabel>
       </BunnySlider>
+
+      <SliderLabel progress={labelOffset}>{currentValueIsMaxValue ? "MAX" : `${progressPercentage}%`}</SliderLabel>
     </SliderContainer>
   );
 };
