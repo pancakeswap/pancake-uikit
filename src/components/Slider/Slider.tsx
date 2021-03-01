@@ -33,14 +33,14 @@ const Slider: React.FC<SliderProps> = ({ min, max, value, onValueChanged, valueL
       <BunnyButt src={bunnyButt} />
       <BunnySlider>
         <BarBackground />
-        <BarProgress currentValueIsMaxValue={isCurrentValueMaxValue} progress={progressPercentage} />
+        <BarProgress isCurrentValueMaxValue={isCurrentValueMaxValue} progress={progressPercentage} />
         <StyledInput
           type="range"
           min={min}
           max={max}
           value={value}
           onChange={handleChange}
-          currentValueIsMaxValue={isCurrentValueMaxValue}
+          isCurrentValueMaxValue={isCurrentValueMaxValue}
         />
       </BunnySlider>
 

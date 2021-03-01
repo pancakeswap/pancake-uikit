@@ -69,9 +69,9 @@ export const BarBackground = styled.div`
   background-color: ${({ theme }) => theme.colors.inputSecondary};
 `;
 
-export const BarProgress = styled.div<{ progress: number; currentValueIsMaxValue: boolean }>`
+export const BarProgress = styled.div<{ progress: number; isCurrentValueMaxValue: boolean }>`
   position: absolute;
-  width: ${({ progress, currentValueIsMaxValue }) => (currentValueIsMaxValue ? "calc(100% - 16px)" : `${progress}%`)};
+  width: ${({ progress, isCurrentValueMaxValue }) => (isCurrentValueMaxValue ? "calc(100% - 16px)" : `${progress}%`)};
   height: 10px;
   top: 18px;
 
