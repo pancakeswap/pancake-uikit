@@ -16,9 +16,10 @@ const Col = styled(Flex)`
 
 const SliderVariant = ({ initialValue }: { initialValue: number }) => {
   const [value, setValue] = useState(initialValue);
-  const min = 0,
-    max = 10;
-  `${computePercentage({ value, max })}%`;
+  const min = 0;
+  const max = 10;
+
+  const percentage = (value / max) * 100;
 
   return (
     <Slider
@@ -26,7 +27,7 @@ const SliderVariant = ({ initialValue }: { initialValue: number }) => {
       max={max}
       value={value}
       onValueChanged={setValue}
-      valueLabel={value === max ? "MAX" : `${computePercentage({ value, max })}%`}
+      valueLabel={value === max ? "MAX" : `${percentage}%`}
     />
   );
 };
@@ -46,8 +47,4 @@ export const Variants: React.FC = () => {
       <SliderVariant initialValue={10} />
     </Col>
   );
-};
-
-const computePercentage = ({ value, max }: { value: number; max: number }): number => {
-  return (value / max) * 100;
 };

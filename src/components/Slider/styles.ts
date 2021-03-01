@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from "react";
 import styled from "styled-components";
-import { Box } from "../..";
+import { Box } from "../Box";
 
 // Using require instead of import to avoid trouble with TS bunding and SVG types
 /* eslint-disable @typescript-eslint/no-var-requires */
