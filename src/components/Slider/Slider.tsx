@@ -7,7 +7,8 @@ import SliderProps from "./types";
 const bunnyButt = require("./svg/bunnybutt.svg");
 /* eslint-enable @typescript-eslint/no-var-requires */
 
-
+// We need to adjust the offset as the percentage increases, as 100% really is 100% - label width. The number 8 is arbitrary, but seems to work...
+const MOVING_SLIDER_LABEL_OFFSET_FACTOR = 8;
 
 const Slider: React.FC<SliderProps> = ({ min, max, value, onValueChanged }) => {
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -17,8 +18,7 @@ const Slider: React.FC<SliderProps> = ({ min, max, value, onValueChanged }) => {
   const progressPercentage = (value / max) * 100;
   const currentValueIsMaxValue = value === max;
 
-  // We need to adjust the offset as the percentage increases, as 100% really is 100% - label width. The number 8 is arbitrary, but seems to work...
-  const labelOffset = progressPercentage - progressPercentage / 8;
+  const labelOffset = progressPercentage - progressPercentage / MOVING_SLIDER_LABEL_OFFSET_FACTOR;
 
   return (
     <SliderContainer>
