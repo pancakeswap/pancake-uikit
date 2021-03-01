@@ -528,8 +528,8 @@ it("renders AccountModal correctly", () => {
             class="sc-eCssSg sc-jSgupP jnvqfy fvYwlu"
           >
             <button
-              class="sc-gKsewC dWHYjx"
-              scale="md"
+              class="sc-gKsewC esAjJs"
+              scale="sm"
             >
               Logout
             </button>

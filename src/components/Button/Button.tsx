@@ -45,6 +45,7 @@ Button.defaultProps = {
   external: false,
   variant: variants.PRIMARY,
   scale: scales.MD,
+  disabled: false,
 };
 
 export default Button;
