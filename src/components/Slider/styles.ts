@@ -45,7 +45,7 @@ export const sliderThumb = (max: boolean): string => `
 }`;
 
 interface StyledInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    currentValueIsMaxValue: boolean;
+  currentValueIsMaxValue: boolean;
 }
 
 export const StyledInput = styled.input<StyledInputProps>`
@@ -75,5 +75,5 @@ export const BarProgress = styled.div<{ progress: number; currentValueIsMaxValue
   height: 10px;
   top: 18px;
 
-  background: #1fc7d4;
+  background: ${({ theme }) => theme.colors.primary};
 `;
