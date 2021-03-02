@@ -60,6 +60,9 @@ export const StyledInput = styled.input<StyledInputProps>`
     cursor: pointer;
     transition: 0.1s all;
     transform: translate(-2px, -2px);
+    // custom moz reset
+    background-color: transparent;
+    border: 0;
 
     :hover {
       transform: scale(1.1) translate(-3px, -3px);
