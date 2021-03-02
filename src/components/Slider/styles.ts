@@ -13,7 +13,10 @@ export const SliderContainer = styled(Box)`
   height: 48px;
 `;
 
-export const SliderLabel = styled.label<{ progress: number }>`
+interface SliderLabelProps {
+  progress: number;
+}
+export const SliderLabel = styled.label<SliderLabelProps>`
   position: absolute;
   bottom: 0;
   margin-left: 16px; // offset the bunny butt width
@@ -35,52 +38,50 @@ interface StyledInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const StyledInput = styled.input<StyledInputProps>`
-  height: 32px;
-  position: relative;
-  cursor: pointer;
-
-  ::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background-image: url(${({ isCurrentValueMaxValue }) => (isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead)});
-    width: 24px;
     height: 32px;
+    position: relative;
     cursor: pointer;
-    transform: translate(-2px, -2px);
-    transition: 0.1s all;
 
-    :hover {
-      transform: scale(1.1) translate(-3px, -3px);
-    }
-  }
-  ::-moz-range-thumb {
-    -webkit-appearance: none;
-    background-image: url(${({ isCurrentValueMaxValue }) => (isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead)});
-    width: 24px;
-    height: 32px;
-    cursor: pointer;
-    transition: 0.1s all;
-    transform: translate(-2px, -2px);
-    // custom moz reset
-    background-color: transparent;
-    border: 0;
+    ::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      background-image: url(${({ isCurrentValueMaxValue }) => isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead});
+      width: 24px;
+      height: 32px;
+      cursor: pointer;
+      transform: translate(-2px, -2px);
+      transition: 0.1s all;
 
-    :hover {
-      transform: scale(1.1) translate(-3px, -3px);
+      :hover {
+        transform: scale(1.1) translate(-3px, -3px);
+      }
     }
-  }
-  ::-ms-thumb {
-    -webkit-appearance: none;
-    background-image: url(${({ isCurrentValueMaxValue }) => (isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead)});
-    width: 24px;
-    height: 32px;
-    cursor: pointer;
-    transform: translate(-2px, -2px);
-    transition: 0.1s all;
+    ::-moz-range-thumb {
+      -webkit-appearance: none;
+      background-image: url(${({ isCurrentValueMaxValue }) => isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead});      width: 24px;
+      height: 32px;
+      cursor: pointer;
+      transition: 0.1s all;
+      transform: translate(-2px, -2px);
+      // custom moz reset
+      background-color: transparent;
+      border: 0;
+      
+      :hover {
+        transform: scale(1.1) translate(-3px, -3px);
+      }
+    } 
+    ::-ms-thumb {
+      -webkit-appearance: none;
+      background-image: url(${({ isCurrentValueMaxValue }) => isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead});      width: 24px;
+      height: 32px;
+      cursor: pointer;
+      transform: translate(-2px, -2px);
+      transition: 0.1s all;
 
-    :hover {
-      transform: scale(1.1) translate(-3px, -3px);
+      :hover {
+        transform: scale(1.1) translate(-3px, -3px);
+      }
     }
-  }
 `;
 
 export const BarBackground = styled.div`
