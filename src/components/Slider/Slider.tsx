@@ -18,7 +18,7 @@ const bunnyButt = require("./svg/bunnybutt.svg");
 // We need to adjust the offset as the percentage increases, as 100% really is 100% - label width. The number 10 is arbitrary, but seems to work...
 const MOVING_SLIDER_LABEL_OFFSET_FACTOR = 10;
 
-const Slider: React.FC<SliderProps> = ({ min, max, value, onValueChanged, valueLabel }) => {
+const Slider: React.FC<SliderProps> = ({ min, max, value, onValueChanged, valueLabel, ...props }) => {
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     onValueChanged(parseInt(target.value, 10));
   };
@@ -29,7 +29,7 @@ const Slider: React.FC<SliderProps> = ({ min, max, value, onValueChanged, valueL
   const labelOffset = progressPercentage - progressPercentage / MOVING_SLIDER_LABEL_OFFSET_FACTOR;
 
   return (
-    <SliderContainer>
+    <SliderContainer {...props}>
       <BunnyButt src={bunnyButt} />
       <BunnySlider>
         <BarBackground />
