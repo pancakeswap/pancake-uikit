@@ -30,35 +30,54 @@ export const BunnySlider = styled.div`
   width: 100%;
 `;
 
-export const sliderThumb = (isCurrentValueMaxValue: boolean): string => `
-{
-    -webkit-appearance: none;
-    background-image: url(${isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead});
-    width: 24px;
-    height: 32px;
-    cursor: pointer;
-    margin-left: -2px;
-    margin-top: -4px;
-    transition: 0.1s all;
-
-    :hover {
-        transform: scale(1.1);
-    }
-    
-}`;
-
 interface StyledInputProps extends InputHTMLAttributes<HTMLInputElement> {
   isCurrentValueMaxValue: boolean;
 }
 
 export const StyledInput = styled.input<StyledInputProps>`
-    height: 32px;
-    position: relative;
-    cursor: pointer;
+  height: 32px;
+  position: relative;
+  cursor: pointer;
 
-    ::-webkit-slider-thumb ${({ isCurrentValueMaxValue }) => sliderThumb(isCurrentValueMaxValue)} 
-    ::-moz-range-thumb ${({ isCurrentValueMaxValue }) => sliderThumb(isCurrentValueMaxValue)}  
-    ::-ms-thumb ${({ isCurrentValueMaxValue }) => sliderThumb(isCurrentValueMaxValue)} 
+  ::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-image: url(${({ isCurrentValueMaxValue }) => (isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead)});
+    width: 24px;
+    height: 32px;
+    cursor: pointer;
+    transform: translate(-2px, -2px);
+    transition: 0.1s all;
+
+    :hover {
+      transform: scale(1.1) translate(-3px, -3px);
+    }
+  }
+  ::-moz-range-thumb {
+    -webkit-appearance: none;
+    background-image: url(${({ isCurrentValueMaxValue }) => (isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead)});
+    width: 24px;
+    height: 32px;
+    cursor: pointer;
+    transition: 0.1s all;
+    transform: translate(-2px, -2px);
+
+    :hover {
+      transform: scale(1.1) translate(-3px, -3px);
+    }
+  }
+  ::-ms-thumb {
+    -webkit-appearance: none;
+    background-image: url(${({ isCurrentValueMaxValue }) => (isCurrentValueMaxValue ? bunnyHeadMax : bunnyHead)});
+    width: 24px;
+    height: 32px;
+    cursor: pointer;
+    transform: translate(-2px, -2px);
+    transition: 0.1s all;
+
+    :hover {
+      transform: scale(1.1) translate(-3px, -3px);
+    }
+  }
 `;
 
 export const BarBackground = styled.div`
