@@ -13,7 +13,7 @@ export default {
 
 export const Default: React.FC = () => {
   return (
-    <NotificationDot>
+    <NotificationDot show>
       <Button>Hi</Button>
     </NotificationDot>
   );
@@ -31,16 +31,16 @@ export const MenuButtons: React.FC = () => {
   return (
     <Row>
       <ButtonMenu activeIndex={index} onItemClick={handleClick}>
-        <NotificationDot invisible={index !== 0}>
+        <NotificationDot show={index === 0}>
           <ButtonMenuItem>Button 1</ButtonMenuItem>
         </NotificationDot>
-        <NotificationDot invisible={index !== 1}>
+        <NotificationDot show={index === 1}>
           <ButtonMenuItem>Button 2</ButtonMenuItem>
         </NotificationDot>
-        <NotificationDot invisible={index !== 2}>
+        <NotificationDot show={index === 2}>
           <ButtonMenuItem>Button 3</ButtonMenuItem>
         </NotificationDot>
-        <NotificationDot invisible={index !== 3}>
+        <NotificationDot show={index === 3}>
           <ButtonMenuItem>Button 4</ButtonMenuItem>
         </NotificationDot>
       </ButtonMenu>

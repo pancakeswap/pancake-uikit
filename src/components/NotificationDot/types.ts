@@ -1,8 +1,8 @@
 export interface NotificationDotProps {
-  invisible?: boolean;
+  show?: boolean;
   children: React.ReactElement | React.ReactElement[];
 }
 
 export interface DotProps {
-  invisible: boolean;
+  show: boolean;
 }

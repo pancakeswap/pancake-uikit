@@ -15,7 +15,7 @@ it("renders correctly", () => {
       >
         <div />
         <span
-          class="sc-gsTCUz cLyqDj"
+          class="sc-gsTCUz cfVzjW"
         />
       </span>
     </DocumentFragment>
