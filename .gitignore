@@ -7,7 +7,7 @@
 /coverage
 
 # production
-/dist
+# /dist
 /storybook-static
 
 # misc
