@@ -31,15 +31,15 @@ const CopyToClipboard: React.FC<Props> = ({ toCopy, children, ...props }) => {
   const [isTooltipDisplayed, setIsTooltipDisplayed] = useState(false);
 
   const copyToClipboard = (content: string) => {
-    const el = document.createElement('textarea');
+    const el = document.createElement("textarea");
     el.value = content;
     document.body.appendChild(el);
     el.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(el);
   };
 
-  function successFeedback() {
+  function displayTooltip() {
     setIsTooltipDisplayed(true);
     setTimeout(() => {
       setIsTooltipDisplayed(false);
@@ -53,10 +53,10 @@ const CopyToClipboard: React.FC<Props> = ({ toCopy, children, ...props }) => {
       onClick={() => {
         if (document.queryCommandSupported("copy")) {
           copyToClipboard(toCopy);
-          successFeedback();
+          displayTooltip();
         } else if (navigator.clipboard) {
           navigator.clipboard.writeText(toCopy);
-          successFeedback();
+          displayTooltip();
         }
       }}
       {...props}
